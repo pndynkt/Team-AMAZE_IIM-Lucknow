@@ -113,14 +113,11 @@ const ROWS: Row[] = [
   {
     n: 9,
     ask: 'Submit a README, a video, a licence, an architecture diagram and a presentation.',
-    built: 'README with team, problem, stack, model, results and run steps. MIT licence. Architecture diagram as PDF and PNG. A segment-by-segment script for the video.',
-    see: [
-      { to: '/guide/docs/readme', label: 'Read me' },
-      { to: '/guide/docs/demo-script', label: 'Demo script' },
-    ],
-    code: ['README.md', 'LICENSE', 'docs/architecture.pdf'],
-    proof: () => 'Video and presentation links still to be added to the README',
-    status: 'partly',
+    built: 'README organised around the 12 items of the submission form: team, college, problem, use case, stack, model, video, licence, architecture, presentation and public links. MIT licence. Architecture diagram and presentation as PDF.',
+    see: [{ to: '/guide/docs/readme', label: 'Read me' }],
+    code: ['README.md', 'LICENSE', 'docs/architecture.pdf', 'docs/presentation.pdf'],
+    proof: () => 'Every item is linked from the submission checklist at the top of the README',
+    status: 'done',
   },
   {
     n: 10,

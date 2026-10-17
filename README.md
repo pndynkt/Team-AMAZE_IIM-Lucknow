@@ -221,7 +221,6 @@ More in [`docs/screenshots/`](docs/screenshots/): landing page, records, alert e
 
 - **Watch:** _unlisted YouTube link: paste here_ (20 minutes)
 - **What it covers:** problem, data, architecture, the twin algorithm, results, doctor dashboard, patient view and check-in ladder, compliance and limits.
-- **Script with timings:** [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md)
 
 ## Open-source license details
 
@@ -241,7 +240,7 @@ More in [`docs/screenshots/`](docs/screenshots/): landing page, records, alert e
 ## Presentation
 
 - **PDF:** [`docs/presentation.pdf`](docs/presentation.pdf) (18 slides)
-- **PowerPoint:** [`docs/presentation.pptx`](docs/presentation.pptx), with speaker notes for the demo video
+- **PowerPoint:** [`docs/presentation.pptx`](docs/presentation.pptx)
 - **Covers:** problem and use case; data fusion and architecture; the five steps of the twin worked on one patient; prediction pipeline and validation; results and twin recovery; doctor console and patient view; India fit and compliance; outcomes; limits and roadmap; team and links.
 
 ## Public access to all files and links
@@ -314,7 +313,7 @@ backend/
   tests/           pytest suite, including leakage tests
   artifacts/       trained models and the model card
 frontend/          React app: pages, charts, brand (logo and glyphs), mock and hosted-demo data
-docs/              algorithm, model card, API, design, device sync, compliance, data sources, demo script, diagrams
+docs/              algorithm, model card, API, design, device sync, compliance, data sources, diagrams, presentation
 scripts/           model card and diagram renderers, hosted-demo snapshot export
 vercel.json        online demo build settings
 ```

@@ -11,7 +11,7 @@ export interface DocEntry {
   source: string
 }
 
-const ORDER = ['README', 'ALGORITHM', 'MODEL_CARD', 'API', 'DESIGN', 'DEVICE_SYNC', 'COMPLIANCE', 'DATA_SOURCES', 'DEMO_SCRIPT']
+const ORDER = ['README', 'ALGORITHM', 'MODEL_CARD', 'API', 'DESIGN', 'DEVICE_SYNC', 'COMPLIANCE', 'DATA_SOURCES']
 
 const NAMES: Record<string, { title: string; summary: string }> = {
   README: { title: 'Read me', summary: 'Team, problem, what is in the box, results and how to run it' },
@@ -22,7 +22,6 @@ const NAMES: Record<string, { title: string; summary: string }> = {
   DEVICE_SYNC: { title: 'Device sync', summary: 'How real watches would connect, brand by brand' },
   COMPLIANCE: { title: 'Compliance', summary: 'DPDP, CDSCO, ICMR, TRAI and ABDM, mapped to screens' },
   DATA_SOURCES: { title: 'Data sources', summary: 'Synthetic data and the published work behind its parameters' },
-  DEMO_SCRIPT: { title: 'Demo script', summary: 'The 20-minute video, segment by segment' },
 }
 
 /** "MODEL_CARD.md" to "model-card". */

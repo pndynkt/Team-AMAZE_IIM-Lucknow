@@ -97,7 +97,7 @@ Daily rows, oldest first. Nulls where the device was not worn.
 }
 ```
 
-`labels` is only present when `?reveal=1` (used by the model page and the video; never shown in the default clinician view).
+`labels` is only present when `?reveal=1` (used by the model page; never shown in the default clinician view).
 
 ## GET /api/patients/{id}/intraday?date=2026-10-12
 
