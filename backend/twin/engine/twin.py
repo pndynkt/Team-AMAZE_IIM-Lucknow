@@ -30,6 +30,12 @@ def _f(x, nd=1):
     return None if x is None or (isinstance(x, float) and np.isnan(x)) else round(float(x), nd)
 
 
+def _dbp(row) -> float:
+    """Diastolic reading that goes with the latest systolic: today's when there is one, else the 7-day mean."""
+    v = row.get("dbp_home")
+    return float(v) if v is not None and pd.notna(v) and pd.notna(row.get("sbp_home")) else float(row["dbp_7d_mean"])
+
+
 class TwinService:
     def __init__(self, cohort: Cohort, db: DB):
         self.c = cohort
@@ -534,7 +540,7 @@ class TwinService:
         ]
         if pd.notna(last["sbp_last"]):
             sbp_dev = float(last["sbp_dev"]) if pd.notna(last["sbp_dev"]) else 0.0
-            drivers.append(driver("Morning BP", f"{last['sbp_last']:.0f}/{last['dbp_7d_mean']:.0f}", f"{sbp_dev:+.0f} mmHg",
+            drivers.append(driver("Morning BP", f"{last['sbp_last']:.0f}/{_dbp(last):.0f}", f"{sbp_dev:+.0f} mmHg",
                                   "up" if sbp_dev > 3 else ("down" if sbp_dev < -3 else "flat"), sbp_dev <= 5))
 
         nights_up = int(last["ns_days"]) if int(last["ns_state"]) >= 1 else 0
@@ -544,7 +550,7 @@ class TwinService:
         pending = tier in ("watch", "urgent") and not checkins
         contacts = self.contacts(pid)
         doctor = self.clinician(pid)
-        sbp_line = f"BP: {last['sbp_last']:.0f}/{last['dbp_7d_mean']:.0f} this morning" if pd.notna(last["sbp_last"]) else "BP: no reading today"
+        sbp_line = f"BP: {last['sbp_last']:.0f}/{_dbp(last):.0f} this morning" if pd.notna(last["sbp_last"]) else "BP: no reading today"
         return {
             "id": pid, "first_name": r["first_name"],
             "score": {"value": score, "label": label, "ring_color": ring, "state": "calibrating" if calibrating else "ready",

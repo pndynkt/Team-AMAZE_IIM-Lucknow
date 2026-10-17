@@ -8,7 +8,7 @@ PDF: [`algorithm.pdf`](algorithm.pdf). The numbers in the picture are recomputed
 
 ## The idea in one minute
 
-- **Problem with normal alerts.** They compare tonight with an average person. A short night pushes one person's heart rate up by 2 bpm and another's by 0.3 bpm, so the same rule is too loud for one and too quiet for the other.
+- **Problem with normal alerts.** They compare tonight with an average person. In our synthetic cohort, a short night pushes one person's heart rate up by 2 bpm and another's by 0.3 bpm, so the same rule is too loud for one and too quiet for the other.
 - **What a twin adds.** A small model of each person: their usual level, and how much their body moves when they sleep less or walk less.
 - **What we alert on.** Only the part of tonight's change that this person's own habits do not explain. A late night is explained. A strain episode is not.
 

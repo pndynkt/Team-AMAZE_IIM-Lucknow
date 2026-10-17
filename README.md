@@ -50,7 +50,7 @@ Every item the submission form asks for, and where it is in this README.
 
 | | |
 |---|---|
-| **Condition** | Hypertension with cardiovascular risk (about 1 in 4 Indian adults) |
+| **Condition** | Hypertension with cardiovascular risk (24% of men and 21% of women in India, NFHS-5) |
 | **Event predicted** | Cardiovascular strain episode, onset within the next **72 hours** |
 | **Streams fused** | Static EHR (FHIR R4: demographics, past diagnoses, lab results, medicines, genetic marker as a polygenic risk tier) + daily wearable stream (heart rate, HRV, sleep with deep and REM stages, step count, SpO2, home BP cuff) |
 | **Core algorithm** | Personal Physiology Engine (empirical Bayes) feeding a calibrated LightGBM fusion model |
@@ -105,10 +105,10 @@ Suggested path: **Evaluator guide** then **Today** (triage) then **Meera Iyer** 
 
 ## Problem statement
 
-- **Hypertension is common and quiet.** About 1 in 4 Indian adults has high blood pressure; most strain builds for days before a surge, clinic visit or ER trip.
+- **Hypertension is common and quiet.** 24% of men and 21% of women in India have high blood pressure (NFHS-5); most strain builds for days before a surge, clinic visit or ER trip.
 - **Watches see it, nobody reads it.** 91.6% of smartwatches sold in India cost under US$50 (IDC, Q2 2026). They record heart rate, sleep and steps every night, but no one turns that into a warning a doctor can act on.
 - **Fixed thresholds drown doctors.** One remote-monitoring study flagged 55.8% of readings. Doctors stop looking.
-- **Every person is different.** A short night raises one person's heart rate by 2 bpm and another's by 0.3 bpm. A population rule cannot tell a bad week from a real warning.
+- **Every person is different.** In our cohort, a short night raises one person's heart rate by 2 bpm and another's by 0.3 bpm. A population rule cannot tell a bad week from a real warning.
 
 ## Healthcare use case
 
@@ -239,9 +239,9 @@ More in [`docs/screenshots/`](docs/screenshots/): landing page, records, alert e
 
 ## Presentation
 
-- **PDF:** [`docs/presentation.pdf`](docs/presentation.pdf) (18 slides)
+- **PDF:** [`docs/presentation.pdf`](docs/presentation.pdf) (9 slides: a one-page summary, then six annexures)
 - **PowerPoint:** [`docs/presentation.pptx`](docs/presentation.pptx)
-- **Covers:** problem and use case; data fusion and architecture; the five steps of the twin worked on one patient; prediction pipeline and validation; results and twin recovery; doctor console and patient view; India fit and compliance; outcomes; limits and roadmap; team and links.
+- **Covers:** the whole entry on one page; A1 problem, people and the event; A2 data fusion and architecture; A3 the five steps of the twin, worked on one patient; A4 validation, results and limits; A5 doctor console and patient app; A6 India fit, compliance, roadmap and team.
 
 ## Public access to all files and links
 
