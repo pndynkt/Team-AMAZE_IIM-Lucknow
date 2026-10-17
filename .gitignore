@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# large regenerable artifacts (python -m twin.models.train rebuilds them)
+backend/artifacts/features.parquet
+# runtime database
+backend/*.db
+backend/*.db-journal
+frontend/node_modules/
+frontend/dist/
+.env
+.DS_Store
+# hosted-demo build output (npm run build:demo) and local screenshot runs
+frontend/dist-demo/
+frontend/screenshots/
+docs/_arch.html
+.vercel

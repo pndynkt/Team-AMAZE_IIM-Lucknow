@@ -1,0 +1,9 @@
+{
+  "watch": 30,
+  "urgent": 60,
+  "ns_rhr_delta_yellow": 3,
+  "ns_rhr_delta_red": 4,
+  "ns_consecutive_nights": 2,
+  "hrv_swc_multiplier": 0.5,
+  "min_confidence_for_urgent": "medium"
+}

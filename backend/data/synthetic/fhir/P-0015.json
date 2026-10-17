@@ -1,0 +1,646 @@
+{
+ "resourceType": "Bundle",
+ "id": "P-0015-ehr",
+ "type": "collection",
+ "meta": {
+  "tag": [
+   {
+    "system": "urn:pratibimb",
+    "code": "synthetic",
+    "display": "Synthetic data, not a real person"
+   }
+  ]
+ },
+ "entry": [
+  {
+   "fullUrl": "urn:uuid:Patient-P-0015",
+   "resource": {
+    "resourceType": "Patient",
+    "id": "P-0015",
+    "identifier": [
+     {
+      "system": "https://healthid.ndhm.gov.in",
+      "value": "75-XXXX-XXXX-6024"
+     }
+    ],
+    "name": [
+     {
+      "use": "official",
+      "text": "Radha Deshpande",
+      "family": "Deshpande",
+      "given": [
+       "Radha"
+      ]
+     }
+    ],
+    "gender": "female",
+    "birthDate": "1966-11-15",
+    "address": [
+     {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "country": "IN"
+     }
+    ],
+    "extension": [
+     {
+      "url": "urn:pratibimb:synthetic",
+      "valueBoolean": true
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Condition-P-0015-cond-hypertension",
+   "resource": {
+    "resourceType": "Condition",
+    "id": "P-0015-cond-hypertension",
+    "clinicalStatus": {
+     "coding": [
+      {
+       "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+       "code": "active"
+      }
+     ]
+    },
+    "code": {
+     "coding": [
+      {
+       "system": "http://snomed.info/sct",
+       "code": "59621000",
+       "display": "Essential hypertension"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "onsetDateTime": "2020-02-28"
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Condition-P-0015-cond-t2d",
+   "resource": {
+    "resourceType": "Condition",
+    "id": "P-0015-cond-t2d",
+    "clinicalStatus": {
+     "coding": [
+      {
+       "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+       "code": "active"
+      }
+     ]
+    },
+    "code": {
+     "coding": [
+      {
+       "system": "http://snomed.info/sct",
+       "code": "44054006",
+       "display": "Type 2 diabetes mellitus"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "onsetDateTime": "2020-02-28"
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Condition-P-0015-cond-obesity",
+   "resource": {
+    "resourceType": "Condition",
+    "id": "P-0015-cond-obesity",
+    "clinicalStatus": {
+     "coding": [
+      {
+       "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+       "code": "active"
+      }
+     ]
+    },
+    "code": {
+     "coding": [
+      {
+       "system": "http://snomed.info/sct",
+       "code": "414916001",
+       "display": "Obesity"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "onsetDateTime": "2026-07-04"
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-sbp",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-sbp",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "vital-signs"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "8480-6",
+       "display": "Systolic blood pressure"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 125,
+     "unit": "mm[Hg]",
+     "system": "http://unitsofmeasure.org",
+     "code": "mm[Hg]"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-dbp",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-dbp",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "vital-signs"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "8462-4",
+       "display": "Diastolic blood pressure"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 70,
+     "unit": "mm[Hg]",
+     "system": "http://unitsofmeasure.org",
+     "code": "mm[Hg]"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-hba1c",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-hba1c",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "4548-4",
+       "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 8.6,
+     "unit": "%",
+     "system": "http://unitsofmeasure.org",
+     "code": "%"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-tc",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-tc",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "2093-3",
+       "display": "Cholesterol [Mass/volume] in Serum or Plasma"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 207.0,
+     "unit": "mg/dL",
+     "system": "http://unitsofmeasure.org",
+     "code": "mg/dL"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-hdl",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-hdl",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "2085-9",
+       "display": "Cholesterol in HDL [Mass/volume] in Serum or Plasma"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 50.0,
+     "unit": "mg/dL",
+     "system": "http://unitsofmeasure.org",
+     "code": "mg/dL"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-ldl",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-ldl",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "13457-7",
+       "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 127.0,
+     "unit": "mg/dL",
+     "system": "http://unitsofmeasure.org",
+     "code": "mg/dL"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-tg",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-tg",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "2571-8",
+       "display": "Triglyceride [Mass/volume] in Serum or Plasma"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 119.0,
+     "unit": "mg/dL",
+     "system": "http://unitsofmeasure.org",
+     "code": "mg/dL"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-bmi",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-bmi",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "vital-signs"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "39156-5",
+       "display": "Body mass index (BMI) [Ratio]"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 34.7,
+     "unit": "kg/m2",
+     "system": "http://unitsofmeasure.org",
+     "code": "kg/m2"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-egfr",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-egfr",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "33914-3",
+       "display": "Glomerular filtration rate/1.73 sq M.predicted"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueQuantity": {
+     "value": 67.0,
+     "unit": "mL/min/{1.73_m2}",
+     "system": "http://unitsofmeasure.org",
+     "code": "mL/min/{1.73_m2}"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:Observation-P-0015-obs-prs",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "P-0015-obs-prs",
+    "status": "final",
+    "category": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory"
+       }
+      ]
+     }
+    ],
+    "code": {
+     "coding": [
+      {
+       "system": "urn:pratibimb:genetics",
+       "code": "cad-prs-tier",
+       "display": "CAD polygenic risk tier (synthetic)"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "effectiveDateTime": "2026-07-04",
+    "valueCodeableConcept": {
+     "text": "high"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:MedicationStatement-P-0015-med-amlodipine",
+   "resource": {
+    "resourceType": "MedicationStatement",
+    "id": "P-0015-med-amlodipine",
+    "status": "active",
+    "medicationCodeableConcept": {
+     "coding": [
+      {
+       "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+       "code": "197361",
+       "display": "Amlodipine 5 mg"
+      }
+     ],
+     "text": "Amlodipine 5 mg"
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "note": [
+     {
+      "text": "Class: Calcium channel blocker"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:MedicationStatement-P-0015-med-telmisartan",
+   "resource": {
+    "resourceType": "MedicationStatement",
+    "id": "P-0015-med-telmisartan",
+    "status": "active",
+    "medicationCodeableConcept": {
+     "coding": [
+      {
+       "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+       "code": "316151",
+       "display": "Telmisartan 40 mg"
+      }
+     ],
+     "text": "Telmisartan 40 mg"
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "note": [
+     {
+      "text": "Class: Angiotensin receptor blocker"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:MedicationStatement-P-0015-med-atorvastatin",
+   "resource": {
+    "resourceType": "MedicationStatement",
+    "id": "P-0015-med-atorvastatin",
+    "status": "active",
+    "medicationCodeableConcept": {
+     "coding": [
+      {
+       "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+       "code": "617310",
+       "display": "Atorvastatin 10 mg"
+      }
+     ],
+     "text": "Atorvastatin 10 mg"
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "note": [
+     {
+      "text": "Class: Statin"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:MedicationStatement-P-0015-med-metformin",
+   "resource": {
+    "resourceType": "MedicationStatement",
+    "id": "P-0015-med-metformin",
+    "status": "active",
+    "medicationCodeableConcept": {
+     "coding": [
+      {
+       "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+       "code": "861007",
+       "display": "Metformin 500 mg"
+      }
+     ],
+     "text": "Metformin 500 mg"
+    },
+    "subject": {
+     "reference": "Patient/P-0015"
+    },
+    "note": [
+     {
+      "text": "Class: Biguanide"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:FamilyMemberHistory-P-0015-fmh-1",
+   "resource": {
+    "resourceType": "FamilyMemberHistory",
+    "id": "P-0015-fmh-1",
+    "status": "completed",
+    "patient": {
+     "reference": "Patient/P-0015"
+    },
+    "relationship": {
+     "coding": [
+      {
+       "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+       "code": "FTH",
+       "display": "father"
+      }
+     ]
+    },
+    "condition": [
+     {
+      "code": {
+       "coding": [
+        {
+         "system": "http://snomed.info/sct",
+         "code": "22298006",
+         "display": "Myocardial infarction"
+        }
+       ]
+      },
+      "onsetAge": {
+       "value": 61,
+       "unit": "a"
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

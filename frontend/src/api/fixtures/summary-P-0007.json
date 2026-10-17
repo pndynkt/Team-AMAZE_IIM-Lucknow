@@ -1,0 +1,26 @@
+{
+  "id": "P-0007",
+  "headline": "Strain episode likely in the next 72 hours",
+  "tier": "urgent",
+  "sentences": [
+    "Meera's twin puts the chance of a strain episode in the next 72 hours at 71%, about twelve times her usual 6%.",
+    "The main reasons are overnight heart rate 9 bpm above her usual for 3 nights and home systolic BP rising 2.4 mmHg a day.",
+    "Her strongest lever is walking: 30 minutes a day is expected to lower her morning BP by about 6 mmHg."
+  ],
+  "next_step": "Call today, confirm amlodipine is being taken (72% over 30 days), and ask for an evening BP reading.",
+  "streams": {
+    "record": [
+      "Essential hypertension",
+      "Type 2 diabetes",
+      "Amlodipine, 72% taken",
+      "Framingham 10-year risk 18.4%"
+    ],
+    "wearable": [
+      "28 nights of heart rate",
+      "26 nights of HRV",
+      "19 home BP readings",
+      "Steps and sleep, hourly sync"
+    ]
+  },
+  "usual_probability": 0.06
+}

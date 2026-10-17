@@ -1,0 +1,267 @@
+{
+  "name": "Pratibimb fusion model",
+  "version": "fusion-lgbm-2026.10.12",
+  "task": "Binary: cardiovascular strain episode onset within 72 h",
+  "data": {
+    "cohort": 240,
+    "patient_days": 28800,
+    "events": 312,
+    "event_rate": 0.0108,
+    "split": "patient-level 70/15/15",
+    "synthetic": true,
+    "generator_seed": 42,
+    "sources": [
+      "Synthetic EHR (Synthea-shaped FHIR R4)",
+      "Synthetic wearable streams parameterised from published baselines"
+    ]
+  },
+  "metrics": {
+    "fused": {
+      "auroc": 0.91,
+      "auprc": 0.42,
+      "sensitivity": 0.81,
+      "specificity": 0.95,
+      "false_alerts_per_patient_day": 0.041,
+      "median_lead_hours": 52,
+      "brier": 0.031
+    },
+    "wearable_only": {
+      "auroc": 0.84,
+      "auprc": 0.31,
+      "sensitivity": 0.74,
+      "specificity": 0.91,
+      "false_alerts_per_patient_day": 0.078,
+      "median_lead_hours": 44,
+      "brier": 0.038
+    },
+    "ehr_only": {
+      "auroc": 0.68,
+      "auprc": 0.12,
+      "sensitivity": 0.52,
+      "specificity": 0.86,
+      "false_alerts_per_patient_day": 0.113,
+      "brier": 0.047
+    },
+    "rule_only": {
+      "auroc": 0.77,
+      "auprc": 0.19,
+      "sensitivity": 0.73,
+      "specificity": 0.88,
+      "false_alerts_per_patient_day": 0.094,
+      "median_lead_hours": 36
+    }
+  },
+  "ablation_note": "Wearable-only model confuses infection-like episodes with strain; fusion with home BP trend and EHR removes 41 of 97 false alerts in validation.",
+  "forecast": {
+    "rhr_mae_day1": 1.6,
+    "sbp_mae_day1": 4.1,
+    "coverage_p10_p90": 0.84
+  },
+  "calibration": {
+    "bins": [
+      {
+        "p_mean": 0.02,
+        "obs": 0.018,
+        "n": 15200
+      },
+      {
+        "p_mean": 0.06,
+        "obs": 0.055,
+        "n": 6100
+      },
+      {
+        "p_mean": 0.12,
+        "obs": 0.13,
+        "n": 2800
+      },
+      {
+        "p_mean": 0.2,
+        "obs": 0.19,
+        "n": 1400
+      },
+      {
+        "p_mean": 0.3,
+        "obs": 0.33,
+        "n": 760
+      },
+      {
+        "p_mean": 0.42,
+        "obs": 0.4,
+        "n": 420
+      },
+      {
+        "p_mean": 0.55,
+        "obs": 0.58,
+        "n": 210
+      },
+      {
+        "p_mean": 0.72,
+        "obs": 0.69,
+        "n": 90
+      }
+    ]
+  },
+  "features": [
+    {
+      "name": "rhr_dev_3d",
+      "group": "wearable",
+      "importance": 0.21,
+      "label": "Overnight RHR deviation, 3-night mean"
+    },
+    {
+      "name": "sbp_slope_7d",
+      "group": "wearable",
+      "importance": 0.14,
+      "label": "Home SBP slope, 7 days"
+    },
+    {
+      "name": "hrv_below_swc",
+      "group": "wearable",
+      "importance": 0.09,
+      "label": "Nights with HRV below SWC"
+    },
+    {
+      "name": "sleep_debt_3d",
+      "group": "wearable",
+      "importance": 0.07,
+      "label": "Sleep debt, 3 nights"
+    },
+    {
+      "name": "steps_z",
+      "group": "wearable",
+      "importance": 0.06,
+      "label": "Steps z-score vs 28 days"
+    },
+    {
+      "name": "framingham_10y",
+      "group": "ehr",
+      "importance": 0.05,
+      "label": "10-year Framingham risk"
+    },
+    {
+      "name": "med_adherence_30d",
+      "group": "ehr",
+      "importance": 0.05,
+      "label": "BP medication adherence, 30 days"
+    },
+    {
+      "name": "hba1c",
+      "group": "ehr",
+      "importance": 0.04,
+      "label": "Latest HbA1c"
+    },
+    {
+      "name": "resp_rate_dev",
+      "group": "wearable",
+      "importance": 0.03,
+      "label": "Respiratory rate deviation"
+    },
+    {
+      "name": "spo2_min",
+      "group": "wearable",
+      "importance": 0.02,
+      "label": "Overnight SpO2 minimum"
+    },
+    {
+      "name": "polygenic_tier",
+      "group": "ehr",
+      "importance": 0.02,
+      "label": "Polygenic risk tier"
+    },
+    {
+      "name": "age",
+      "group": "ehr",
+      "importance": 0.02,
+      "label": "Age"
+    }
+  ],
+  "limitations": [
+    "Trained and validated on synthetic data only; real-world performance is unknown.",
+    "Consumer wearables under-sample and mis-estimate HR during motion; overnight windows are used to limit this.",
+    "Home BP readings are patient-entered and may be missing for days at a time.",
+    "Framingham under-estimates risk in South Asians; the WHO SEAR chart is planned.",
+    "The model may not detect every event, and some alerts will be false; the alert budget is set to limit this.",
+    "Minimum 14 nights of data needed before urgent alerts are enabled for a person."
+  ],
+  "published_anchors": [
+    {
+      "name": "NightSignal (infection)",
+      "sensitivity": 0.8,
+      "specificity": 0.877,
+      "lead": "median 3 days"
+    },
+    {
+      "name": "Epic Deterioration Index",
+      "auroc": 0.76,
+      "lead": "median 28 h"
+    },
+    {
+      "name": "Fitbit COVID-19 study",
+      "auroc": 0.72,
+      "lead": "median 2 days"
+    }
+  ],
+  "regulatory": {
+    "status": "Research proof-of-concept, not a medical device",
+    "cdsco": "Production version would be Medical Device Software, likely Class B or C (CDSCO MDSW guidance, 30 Jul 2026)",
+    "dpdp": "DPDP-ready ahead of 13 May 2027 commencement"
+  },
+  "leakage_tests": {
+    "passed": true,
+    "tests": [
+      "no_future_values_in_features",
+      "patient_level_split",
+      "label_window_excludes_t"
+    ]
+  },
+  "physiology": {
+    "method": "Empirical-Bayes partial pooling on calm days",
+    "pairs": [
+      {
+        "key": "steps_sbp",
+        "label": "Walking to next-morning systolic BP",
+        "r_pooled": 0.71,
+        "r_raw": 0.52,
+        "mae_pooled": 0.38,
+        "mae_raw": 0.61,
+        "mae_population": 0.66,
+        "coverage_80": 0.79,
+        "n_patients": 236
+      },
+      {
+        "key": "sleep_rhr",
+        "label": "Sleep to next-night resting heart rate",
+        "r_pooled": 0.74,
+        "r_raw": 0.58,
+        "mae_pooled": 0.31,
+        "mae_raw": 0.46,
+        "mae_population": 0.52,
+        "coverage_80": 0.81,
+        "n_patients": 239
+      },
+      {
+        "key": "sleep_hrv",
+        "label": "Sleep to next-night HRV",
+        "r_pooled": 0.62,
+        "r_raw": 0.41,
+        "mae_pooled": 1.9,
+        "mae_raw": 2.8,
+        "mae_population": 2.6,
+        "coverage_80": 0.77,
+        "n_patients": 231
+      },
+      {
+        "key": "steps_rhr",
+        "label": "Walking to next-night resting heart rate",
+        "r_pooled": 0.55,
+        "r_raw": 0.33,
+        "mae_pooled": 0.12,
+        "mae_raw": 0.21,
+        "mae_population": 0.17,
+        "coverage_80": 0.82,
+        "n_patients": 236
+      }
+    ],
+    "note": "On the synthetic cohort the generator's true per-person slopes are known, so the twin's recovery of each person's physiology can be measured directly."
+  }
+}

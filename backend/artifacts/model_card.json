@@ -1,0 +1,1797 @@
+{
+  "name": "Pratibimb fusion model",
+  "version": "fusion-lgbm-2026.10.12",
+  "trained_at": "2026-10-14T15:08:18.154630+00:00",
+  "task": "Binary: cardiovascular strain episode onset within 72 h, scored once per night from the latest synced data",
+  "condition": "Hypertension with cardiovascular risk (Indian adults)",
+  "algorithm": "LightGBM gradient-boosted trees on dynamic (wearable) features, twin-adjusted residuals and a compact static tower of eight record features; patient-level 5-fold CV repeated on three patient splits; Platt calibration on pooled out-of-fold scores; the five fold models form the bag for the probability band; NightSignal-style rule run alongside",
+  "data": {
+    "cohort": 240,
+    "patient_days": 28685,
+    "events": 342,
+    "positive_days": 1011,
+    "event_rate_days": 0.0352,
+    "event_rate": 0.0352,
+    "split": "patient-level 5-fold cross-validation repeated on three patient splits (seeds 42, 43, 44); every metric on pooled out-of-fold predictions; headline numbers are the mean of the three splits",
+    "synthetic": true,
+    "generator_seed": 42,
+    "sources": [
+      "Synthetic EHR, Synthea-shaped FHIR R4 (twin.data.ehr)",
+      "Synthetic wearable streams with labelled strain episodes and unlabelled infection, lifestyle and missing-data confounders (twin.data.wearables)"
+    ],
+    "confounders": {
+      "infection_like": 242,
+      "missed_dose": 767,
+      "late_nights": 756,
+      "travel": 290
+    },
+    "folds": 5
+  },
+  "metrics": {
+    "fused": {
+      "name": "fused",
+      "auroc": 0.87,
+      "auprc": 0.203,
+      "brier": 0.03,
+      "sensitivity": 0.582,
+      "specificity": 0.958,
+      "false_alerts_per_patient_day": 0.0409,
+      "median_lead_hours": 48.0,
+      "events": 342,
+      "events_caught": 199,
+      "threshold": 0.18614290642076564,
+      "alerts_total": 1552,
+      "sensitivity_48h_lead": 0.433,
+      "watch_point": {
+        "threshold": 0.07453364622755738,
+        "sensitivity": 0.901,
+        "false_alerts_per_patient_day": 0.1237
+      }
+    },
+    "watch_only": {
+      "name": "watch_only",
+      "auroc": 0.771,
+      "auprc": 0.12,
+      "brier": 0.0319,
+      "sensitivity": 0.532,
+      "specificity": 0.954,
+      "false_alerts_per_patient_day": 0.0444,
+      "median_lead_hours": 48.0,
+      "events": 342,
+      "events_caught": 182,
+      "threshold": 0.16870775496999912,
+      "alerts_total": 1595,
+      "sensitivity_48h_lead": 0.374,
+      "watch_point": {
+        "threshold": 0.054516992914554044,
+        "sensitivity": 0.904,
+        "false_alerts_per_patient_day": 0.1939
+      }
+    },
+    "wearable_only": {
+      "name": "wearable_only",
+      "auroc": 0.859,
+      "auprc": 0.195,
+      "brier": 0.03,
+      "sensitivity": 0.632,
+      "specificity": 0.955,
+      "false_alerts_per_patient_day": 0.0435,
+      "median_lead_hours": 48.0,
+      "events": 342,
+      "events_caught": 216,
+      "threshold": 0.1781362479044916,
+      "alerts_total": 1640,
+      "sensitivity_48h_lead": 0.456,
+      "watch_point": {
+        "threshold": 0.08144771693817474,
+        "sensitivity": 0.904,
+        "false_alerts_per_patient_day": 0.1177
+      }
+    },
+    "ehr_only": {
+      "name": "ehr_only",
+      "auroc": 0.577,
+      "auprc": 0.042,
+      "brier": 0.0339,
+      "sensitivity": 0.184,
+      "specificity": 0.881,
+      "false_alerts_per_patient_day": 0.1151,
+      "median_lead_hours": 72.0,
+      "events": 342,
+      "events_caught": 63,
+      "threshold": 0.05550388657142374,
+      "alerts_total": 3485,
+      "sensitivity_48h_lead": 0.184,
+      "watch_point": {
+        "threshold": 0.02775194328571187,
+        "sensitivity": 0.857,
+        "false_alerts_per_patient_day": 0.6896
+      }
+    },
+    "rule_only": {
+      "name": "rule_only",
+      "auroc": 0.708,
+      "auprc": 0.091,
+      "brier": null,
+      "sensitivity": 0.424,
+      "specificity": 0.957,
+      "false_alerts_per_patient_day": 0.0412,
+      "median_lead_hours": 24.0,
+      "events": 342,
+      "events_caught": 145,
+      "threshold": 2.0,
+      "alerts_total": 1409,
+      "sensitivity_48h_lead": 0.19
+    },
+    "fused_no_twin": {
+      "name": "fused_no_twin",
+      "auroc": 0.832,
+      "auprc": 0.166,
+      "brier": 0.0305,
+      "sensitivity": 0.585,
+      "specificity": 0.954,
+      "false_alerts_per_patient_day": 0.044,
+      "median_lead_hours": 48.0,
+      "events": 342,
+      "events_caught": 200,
+      "threshold": 0.16517332128293363,
+      "alerts_total": 1641,
+      "sensitivity_48h_lead": 0.442,
+      "watch_point": {
+        "threshold": 0.07433856127458803,
+        "sensitivity": 0.904,
+        "false_alerts_per_patient_day": 0.1363
+      }
+    },
+    "ceiling_wearable_plus_oracle_prior": {
+      "name": "wearable_plus_oracle_prior",
+      "auroc": 0.861,
+      "auprc": 0.192,
+      "brier": 0.0297,
+      "sensitivity": 0.713,
+      "specificity": 0.954,
+      "false_alerts_per_patient_day": 0.0448,
+      "median_lead_hours": 48.0,
+      "events": 342,
+      "events_caught": 244,
+      "threshold": 0.20761007294211253,
+      "alerts_total": 1732,
+      "sensitivity_48h_lead": 0.512,
+      "watch_point": {
+        "threshold": 0.09257832074973403,
+        "sensitivity": 0.904,
+        "false_alerts_per_patient_day": 0.1028
+      }
+    },
+    "repeated": {
+      "fused": {
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "auroc": {
+          "mean": 0.876,
+          "min": 0.87,
+          "max": 0.884
+        },
+        "auprc": {
+          "mean": 0.218,
+          "min": 0.203,
+          "max": 0.234
+        },
+        "brier": {
+          "mean": 0.03,
+          "min": 0.029,
+          "max": 0.03
+        },
+        "sensitivity": {
+          "mean": 0.705,
+          "min": 0.582,
+          "max": 0.772
+        },
+        "sensitivity_48h_lead": {
+          "mean": 0.499,
+          "min": 0.433,
+          "max": 0.553
+        },
+        "false_alerts_per_patient_day": {
+          "mean": 0.043,
+          "min": 0.041,
+          "max": 0.044
+        },
+        "median_lead_hours": {
+          "mean": 48.0,
+          "min": 48.0,
+          "max": 48.0
+        }
+      },
+      "wearable_only": {
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "auroc": {
+          "mean": 0.87,
+          "min": 0.859,
+          "max": 0.878
+        },
+        "auprc": {
+          "mean": 0.214,
+          "min": 0.195,
+          "max": 0.226
+        },
+        "brier": {
+          "mean": 0.03,
+          "min": 0.03,
+          "max": 0.03
+        },
+        "sensitivity": {
+          "mean": 0.715,
+          "min": 0.632,
+          "max": 0.772
+        },
+        "sensitivity_48h_lead": {
+          "mean": 0.507,
+          "min": 0.456,
+          "max": 0.538
+        },
+        "false_alerts_per_patient_day": {
+          "mean": 0.044,
+          "min": 0.043,
+          "max": 0.045
+        },
+        "median_lead_hours": {
+          "mean": 48.0,
+          "min": 48.0,
+          "max": 48.0
+        }
+      },
+      "watch_only": {
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "auroc": {
+          "mean": 0.804,
+          "min": 0.771,
+          "max": 0.822
+        },
+        "auprc": {
+          "mean": 0.136,
+          "min": 0.12,
+          "max": 0.145
+        },
+        "brier": {
+          "mean": 0.032,
+          "min": 0.032,
+          "max": 0.032
+        },
+        "sensitivity": {
+          "mean": 0.552,
+          "min": 0.532,
+          "max": 0.588
+        },
+        "sensitivity_48h_lead": {
+          "mean": 0.369,
+          "min": 0.351,
+          "max": 0.383
+        },
+        "false_alerts_per_patient_day": {
+          "mean": 0.044,
+          "min": 0.043,
+          "max": 0.044
+        },
+        "median_lead_hours": {
+          "mean": 48.0,
+          "min": 48.0,
+          "max": 48.0
+        }
+      },
+      "ehr_only": {
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "auroc": {
+          "mean": 0.578,
+          "min": 0.577,
+          "max": 0.581
+        },
+        "auprc": {
+          "mean": 0.042,
+          "min": 0.042,
+          "max": 0.042
+        },
+        "brier": {
+          "mean": 0.034,
+          "min": 0.034,
+          "max": 0.034
+        },
+        "sensitivity": {
+          "mean": 0.153,
+          "min": 0.123,
+          "max": 0.184
+        },
+        "sensitivity_48h_lead": {
+          "mean": 0.153,
+          "min": 0.123,
+          "max": 0.184
+        },
+        "false_alerts_per_patient_day": {
+          "mean": 0.115,
+          "min": 0.113,
+          "max": 0.116
+        },
+        "median_lead_hours": {
+          "mean": 72.0,
+          "min": 72.0,
+          "max": 72.0
+        }
+      },
+      "fused_no_twin": {
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "auroc": {
+          "mean": 0.851,
+          "min": 0.832,
+          "max": 0.862
+        },
+        "auprc": {
+          "mean": 0.189,
+          "min": 0.166,
+          "max": 0.208
+        },
+        "brier": {
+          "mean": 0.03,
+          "min": 0.03,
+          "max": 0.03
+        },
+        "sensitivity": {
+          "mean": 0.638,
+          "min": 0.585,
+          "max": 0.667
+        },
+        "sensitivity_48h_lead": {
+          "mean": 0.453,
+          "min": 0.436,
+          "max": 0.48
+        },
+        "false_alerts_per_patient_day": {
+          "mean": 0.043,
+          "min": 0.042,
+          "max": 0.044
+        },
+        "median_lead_hours": {
+          "mean": 48.0,
+          "min": 48.0,
+          "max": 48.0
+        }
+      },
+      "twin_beats_no_twin_auroc": "3 of 3",
+      "fused_beats_wearable_auroc": "2 of 3"
+    }
+  },
+  "ablation_note": "At a matched 90% event sensitivity on out-of-fold predictions: watch-only (HR, HRV, sleep, steps, SpO2, respiratory rate) alerted inside 233 of 242 infection-like windows at 0.194 false alerts per patient-day; adding the home BP cuff gave 164 windows at 0.1169; the fused model with the record gave 173 windows at 0.126. The blood-pressure cuff is what separates strain from a cold. Mean over three patient splits: AUROC 0.578 for the record alone, 0.804 for the watch alone, 0.87 for watch + cuff and 0.876 fused (fused ahead of watch + cuff on 2 of 3 splits).",
+  "twin_note": "Twin adjustment: the personal physiology engine removes the part of each night's heart rate, HRV and BP change that the person's own sleep and activity explain, and the record tells the model how to read the heart-rate rise (beta blockers dampen it). Mean over three patient splits: without it the fused model reaches AUROC 0.851 and catches 64% of events at the false-alert budget; with it, AUROC 0.876 and 70% (better AUROC on 3 of 3 splits).",
+  "ceiling_note": "Even an oracle static prior (the generator's own risk multiplier) adds only a little over the wearable-only model: on a 72-hour horizon, when matters more than who. The EHR stream's job is prioritisation, interpretation (diabetic silent episodes, beta-blocker dampening) and the static risk panel, not timing.",
+  "operating_points": {
+    "p_watch": 0.07453364622755738,
+    "p_urgent": 0.18614290642076564,
+    "curve": [
+      {
+        "threshold": 0.007259135676508085,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4665,
+        "specificity": 0.516
+      },
+      {
+        "threshold": 0.007327781963764183,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4642,
+        "specificity": 0.519
+      },
+      {
+        "threshold": 0.007390005385437652,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4602,
+        "specificity": 0.523
+      },
+      {
+        "threshold": 0.007476879711305336,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4571,
+        "specificity": 0.526
+      },
+      {
+        "threshold": 0.007608416988706954,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.454,
+        "specificity": 0.529
+      },
+      {
+        "threshold": 0.007726677511951555,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4509,
+        "specificity": 0.533
+      },
+      {
+        "threshold": 0.00787074861689494,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4478,
+        "specificity": 0.536
+      },
+      {
+        "threshold": 0.008016302039471209,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4447,
+        "specificity": 0.539
+      },
+      {
+        "threshold": 0.008139791974975566,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4416,
+        "specificity": 0.542
+      },
+      {
+        "threshold": 0.008254662740778585,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4385,
+        "specificity": 0.546
+      },
+      {
+        "threshold": 0.008407928037234644,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4356,
+        "specificity": 0.549
+      },
+      {
+        "threshold": 0.008518973941184293,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4323,
+        "specificity": 0.552
+      },
+      {
+        "threshold": 0.008666855380829869,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4291,
+        "specificity": 0.555
+      },
+      {
+        "threshold": 0.008797443388720114,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.426,
+        "specificity": 0.558
+      },
+      {
+        "threshold": 0.008952031771632273,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4229,
+        "specificity": 0.562
+      },
+      {
+        "threshold": 0.009102816425956766,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4198,
+        "specificity": 0.565
+      },
+      {
+        "threshold": 0.009260477158246861,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4167,
+        "specificity": 0.568
+      },
+      {
+        "threshold": 0.009429756895941357,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4136,
+        "specificity": 0.571
+      },
+      {
+        "threshold": 0.009583554094299132,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4105,
+        "specificity": 0.575
+      },
+      {
+        "threshold": 0.009704322233590645,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4073,
+        "specificity": 0.578
+      },
+      {
+        "threshold": 0.009841455451396473,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4041,
+        "specificity": 0.581
+      },
+      {
+        "threshold": 0.00996812891880623,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.4011,
+        "specificity": 0.584
+      },
+      {
+        "threshold": 0.010139925654386253,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3979,
+        "specificity": 0.588
+      },
+      {
+        "threshold": 0.010364935468391508,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3949,
+        "specificity": 0.591
+      },
+      {
+        "threshold": 0.010580393829364087,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3918,
+        "specificity": 0.594
+      },
+      {
+        "threshold": 0.010771644136399635,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3886,
+        "specificity": 0.597
+      },
+      {
+        "threshold": 0.010940709364503955,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3855,
+        "specificity": 0.6
+      },
+      {
+        "threshold": 0.01114997919644983,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3824,
+        "specificity": 0.604
+      },
+      {
+        "threshold": 0.011324734609605326,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3793,
+        "specificity": 0.607
+      },
+      {
+        "threshold": 0.011503519132493742,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3761,
+        "specificity": 0.61
+      },
+      {
+        "threshold": 0.011744764887843071,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.373,
+        "specificity": 0.613
+      },
+      {
+        "threshold": 0.011999060058780505,
+        "sensitivity": 1.0,
+        "false_alerts_per_patient_day": 0.3699,
+        "specificity": 0.617
+      },
+      {
+        "threshold": 0.01222203212713788,
+        "sensitivity": 0.997,
+        "false_alerts_per_patient_day": 0.3668,
+        "specificity": 0.62
+      },
+      {
+        "threshold": 0.01241830348921491,
+        "sensitivity": 0.997,
+        "false_alerts_per_patient_day": 0.3637,
+        "specificity": 0.623
+      },
+      {
+        "threshold": 0.012615540338952968,
+        "sensitivity": 0.997,
+        "false_alerts_per_patient_day": 0.3606,
+        "specificity": 0.626
+      },
+      {
+        "threshold": 0.012825752053080054,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3575,
+        "specificity": 0.629
+      },
+      {
+        "threshold": 0.013034205565649154,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3544,
+        "specificity": 0.633
+      },
+      {
+        "threshold": 0.013283601458677234,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3513,
+        "specificity": 0.636
+      },
+      {
+        "threshold": 0.013511705739287158,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3482,
+        "specificity": 0.639
+      },
+      {
+        "threshold": 0.013701779704644448,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3451,
+        "specificity": 0.642
+      },
+      {
+        "threshold": 0.013970707334517316,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3421,
+        "specificity": 0.645
+      },
+      {
+        "threshold": 0.014223358285597221,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.339,
+        "specificity": 0.649
+      },
+      {
+        "threshold": 0.014474893654100665,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3359,
+        "specificity": 0.652
+      },
+      {
+        "threshold": 0.014779990363272462,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3329,
+        "specificity": 0.655
+      },
+      {
+        "threshold": 0.015007321048206207,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3299,
+        "specificity": 0.658
+      },
+      {
+        "threshold": 0.015250611820368765,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3269,
+        "specificity": 0.661
+      },
+      {
+        "threshold": 0.015508886291945693,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3237,
+        "specificity": 0.664
+      },
+      {
+        "threshold": 0.015817797107034227,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3206,
+        "specificity": 0.668
+      },
+      {
+        "threshold": 0.016159803710925954,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3175,
+        "specificity": 0.671
+      },
+      {
+        "threshold": 0.016437973277379024,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3144,
+        "specificity": 0.674
+      },
+      {
+        "threshold": 0.01677868697172422,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3113,
+        "specificity": 0.677
+      },
+      {
+        "threshold": 0.017116683989967508,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3082,
+        "specificity": 0.681
+      },
+      {
+        "threshold": 0.01751749250363887,
+        "sensitivity": 0.994,
+        "false_alerts_per_patient_day": 0.3051,
+        "specificity": 0.684
+      },
+      {
+        "threshold": 0.01774805086755398,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.3021,
+        "specificity": 0.687
+      },
+      {
+        "threshold": 0.01800685515335029,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.299,
+        "specificity": 0.69
+      },
+      {
+        "threshold": 0.01843053966845644,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2959,
+        "specificity": 0.693
+      },
+      {
+        "threshold": 0.018806921989850678,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2927,
+        "specificity": 0.697
+      },
+      {
+        "threshold": 0.019187468234330284,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2896,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.019662679337225448,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2865,
+        "specificity": 0.703
+      },
+      {
+        "threshold": 0.020137627897903757,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2835,
+        "specificity": 0.706
+      },
+      {
+        "threshold": 0.020572474437066956,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2804,
+        "specificity": 0.709
+      },
+      {
+        "threshold": 0.021028788127992314,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2772,
+        "specificity": 0.713
+      },
+      {
+        "threshold": 0.021440186874746938,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2743,
+        "specificity": 0.716
+      },
+      {
+        "threshold": 0.02188113574832235,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.2711,
+        "specificity": 0.719
+      },
+      {
+        "threshold": 0.022423990457279466,
+        "sensitivity": 0.991,
+        "false_alerts_per_patient_day": 0.268,
+        "specificity": 0.722
+      },
+      {
+        "threshold": 0.022899357018040224,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.265,
+        "specificity": 0.725
+      },
+      {
+        "threshold": 0.02338569508630509,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.262,
+        "specificity": 0.728
+      },
+      {
+        "threshold": 0.023906015296116648,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2589,
+        "specificity": 0.732
+      },
+      {
+        "threshold": 0.024388676578589435,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.256,
+        "specificity": 0.735
+      },
+      {
+        "threshold": 0.0248040701845761,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2528,
+        "specificity": 0.738
+      },
+      {
+        "threshold": 0.025409729806712092,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2497,
+        "specificity": 0.741
+      },
+      {
+        "threshold": 0.02606836202846061,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2466,
+        "specificity": 0.744
+      },
+      {
+        "threshold": 0.026680954531643614,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2435,
+        "specificity": 0.748
+      },
+      {
+        "threshold": 0.027346256737432222,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2405,
+        "specificity": 0.751
+      },
+      {
+        "threshold": 0.027899911315050173,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2375,
+        "specificity": 0.754
+      },
+      {
+        "threshold": 0.02860089416597431,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2344,
+        "specificity": 0.757
+      },
+      {
+        "threshold": 0.02915661384271861,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2314,
+        "specificity": 0.76
+      },
+      {
+        "threshold": 0.029985128206336965,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2283,
+        "specificity": 0.763
+      },
+      {
+        "threshold": 0.03086125341632613,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2253,
+        "specificity": 0.766
+      },
+      {
+        "threshold": 0.031552933338203235,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2224,
+        "specificity": 0.769
+      },
+      {
+        "threshold": 0.03236365607313289,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2192,
+        "specificity": 0.773
+      },
+      {
+        "threshold": 0.032970341109381664,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2161,
+        "specificity": 0.776
+      },
+      {
+        "threshold": 0.03376732595689755,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.213,
+        "specificity": 0.779
+      },
+      {
+        "threshold": 0.034654195454669454,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.21,
+        "specificity": 0.782
+      },
+      {
+        "threshold": 0.035468244277119594,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.207,
+        "specificity": 0.785
+      },
+      {
+        "threshold": 0.03641733863151182,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2038,
+        "specificity": 0.789
+      },
+      {
+        "threshold": 0.037235315018485794,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.2009,
+        "specificity": 0.792
+      },
+      {
+        "threshold": 0.038162323823146736,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.1979,
+        "specificity": 0.795
+      },
+      {
+        "threshold": 0.03915734354358105,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.1948,
+        "specificity": 0.798
+      },
+      {
+        "threshold": 0.04049774268042629,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.1917,
+        "specificity": 0.801
+      },
+      {
+        "threshold": 0.04157637809580576,
+        "sensitivity": 0.988,
+        "false_alerts_per_patient_day": 0.1887,
+        "specificity": 0.804
+      },
+      {
+        "threshold": 0.04252946849677946,
+        "sensitivity": 0.985,
+        "false_alerts_per_patient_day": 0.1856,
+        "specificity": 0.808
+      },
+      {
+        "threshold": 0.04352482329296207,
+        "sensitivity": 0.985,
+        "false_alerts_per_patient_day": 0.1835,
+        "specificity": 0.81
+      },
+      {
+        "threshold": 0.04388780317969442,
+        "sensitivity": 0.977,
+        "false_alerts_per_patient_day": 0.1815,
+        "specificity": 0.812
+      },
+      {
+        "threshold": 0.04499221329956026,
+        "sensitivity": 0.974,
+        "false_alerts_per_patient_day": 0.1767,
+        "specificity": 0.817
+      },
+      {
+        "threshold": 0.04603494047726788,
+        "sensitivity": 0.974,
+        "false_alerts_per_patient_day": 0.1736,
+        "specificity": 0.82
+      },
+      {
+        "threshold": 0.04730986044979952,
+        "sensitivity": 0.974,
+        "false_alerts_per_patient_day": 0.1706,
+        "specificity": 0.823
+      },
+      {
+        "threshold": 0.04862287769394881,
+        "sensitivity": 0.971,
+        "false_alerts_per_patient_day": 0.1676,
+        "specificity": 0.826
+      },
+      {
+        "threshold": 0.04997828108961994,
+        "sensitivity": 0.968,
+        "false_alerts_per_patient_day": 0.1648,
+        "specificity": 0.829
+      },
+      {
+        "threshold": 0.05138103111193643,
+        "sensitivity": 0.962,
+        "false_alerts_per_patient_day": 0.1617,
+        "specificity": 0.832
+      },
+      {
+        "threshold": 0.053013900370827594,
+        "sensitivity": 0.959,
+        "false_alerts_per_patient_day": 0.1587,
+        "specificity": 0.836
+      },
+      {
+        "threshold": 0.05427046054067946,
+        "sensitivity": 0.959,
+        "false_alerts_per_patient_day": 0.1557,
+        "specificity": 0.839
+      },
+      {
+        "threshold": 0.055870345357825604,
+        "sensitivity": 0.953,
+        "false_alerts_per_patient_day": 0.1528,
+        "specificity": 0.842
+      },
+      {
+        "threshold": 0.05756051625670443,
+        "sensitivity": 0.953,
+        "false_alerts_per_patient_day": 0.1499,
+        "specificity": 0.845
+      },
+      {
+        "threshold": 0.05916018254965804,
+        "sensitivity": 0.947,
+        "false_alerts_per_patient_day": 0.147,
+        "specificity": 0.848
+      },
+      {
+        "threshold": 0.060697982817702,
+        "sensitivity": 0.947,
+        "false_alerts_per_patient_day": 0.144,
+        "specificity": 0.851
+      },
+      {
+        "threshold": 0.06252882302555665,
+        "sensitivity": 0.942,
+        "false_alerts_per_patient_day": 0.1413,
+        "specificity": 0.854
+      },
+      {
+        "threshold": 0.0644593173034795,
+        "sensitivity": 0.936,
+        "false_alerts_per_patient_day": 0.1383,
+        "specificity": 0.857
+      },
+      {
+        "threshold": 0.06584282456384855,
+        "sensitivity": 0.918,
+        "false_alerts_per_patient_day": 0.1353,
+        "specificity": 0.86
+      },
+      {
+        "threshold": 0.0680730797934132,
+        "sensitivity": 0.915,
+        "false_alerts_per_patient_day": 0.1323,
+        "specificity": 0.863
+      },
+      {
+        "threshold": 0.06996072469898161,
+        "sensitivity": 0.909,
+        "false_alerts_per_patient_day": 0.1294,
+        "specificity": 0.866
+      },
+      {
+        "threshold": 0.07194274939260442,
+        "sensitivity": 0.904,
+        "false_alerts_per_patient_day": 0.1267,
+        "specificity": 0.869
+      },
+      {
+        "threshold": 0.07453364622755738,
+        "sensitivity": 0.901,
+        "false_alerts_per_patient_day": 0.1237,
+        "specificity": 0.872
+      },
+      {
+        "threshold": 0.07653873049512702,
+        "sensitivity": 0.898,
+        "false_alerts_per_patient_day": 0.1213,
+        "specificity": 0.874
+      },
+      {
+        "threshold": 0.0779447226297964,
+        "sensitivity": 0.892,
+        "false_alerts_per_patient_day": 0.1178,
+        "specificity": 0.878
+      },
+      {
+        "threshold": 0.08070571395303458,
+        "sensitivity": 0.889,
+        "false_alerts_per_patient_day": 0.115,
+        "specificity": 0.881
+      },
+      {
+        "threshold": 0.08390631351223155,
+        "sensitivity": 0.877,
+        "false_alerts_per_patient_day": 0.1124,
+        "specificity": 0.884
+      },
+      {
+        "threshold": 0.08745421364183538,
+        "sensitivity": 0.871,
+        "false_alerts_per_patient_day": 0.1093,
+        "specificity": 0.887
+      },
+      {
+        "threshold": 0.09057621706339267,
+        "sensitivity": 0.868,
+        "false_alerts_per_patient_day": 0.1065,
+        "specificity": 0.89
+      },
+      {
+        "threshold": 0.09280917181340911,
+        "sensitivity": 0.868,
+        "false_alerts_per_patient_day": 0.1034,
+        "specificity": 0.893
+      },
+      {
+        "threshold": 0.09575598984991626,
+        "sensitivity": 0.865,
+        "false_alerts_per_patient_day": 0.1005,
+        "specificity": 0.896
+      },
+      {
+        "threshold": 0.09901183420852837,
+        "sensitivity": 0.865,
+        "false_alerts_per_patient_day": 0.0975,
+        "specificity": 0.899
+      },
+      {
+        "threshold": 0.10278655220940804,
+        "sensitivity": 0.86,
+        "false_alerts_per_patient_day": 0.0946,
+        "specificity": 0.902
+      },
+      {
+        "threshold": 0.10678972258492275,
+        "sensitivity": 0.857,
+        "false_alerts_per_patient_day": 0.0917,
+        "specificity": 0.905
+      },
+      {
+        "threshold": 0.11045758541147072,
+        "sensitivity": 0.848,
+        "false_alerts_per_patient_day": 0.0889,
+        "specificity": 0.908
+      },
+      {
+        "threshold": 0.11546195835906309,
+        "sensitivity": 0.839,
+        "false_alerts_per_patient_day": 0.0859,
+        "specificity": 0.911
+      },
+      {
+        "threshold": 0.1200575011223272,
+        "sensitivity": 0.833,
+        "false_alerts_per_patient_day": 0.0832,
+        "specificity": 0.914
+      },
+      {
+        "threshold": 0.12497990685294964,
+        "sensitivity": 0.833,
+        "false_alerts_per_patient_day": 0.0806,
+        "specificity": 0.916
+      },
+      {
+        "threshold": 0.1292610647195667,
+        "sensitivity": 0.827,
+        "false_alerts_per_patient_day": 0.0775,
+        "specificity": 0.92
+      },
+      {
+        "threshold": 0.1319078993132304,
+        "sensitivity": 0.822,
+        "false_alerts_per_patient_day": 0.0758,
+        "specificity": 0.921
+      },
+      {
+        "threshold": 0.1324979532072472,
+        "sensitivity": 0.798,
+        "false_alerts_per_patient_day": 0.0722,
+        "specificity": 0.925
+      },
+      {
+        "threshold": 0.13626860967504945,
+        "sensitivity": 0.784,
+        "false_alerts_per_patient_day": 0.0697,
+        "specificity": 0.928
+      },
+      {
+        "threshold": 0.14194943105929012,
+        "sensitivity": 0.784,
+        "false_alerts_per_patient_day": 0.067,
+        "specificity": 0.931
+      },
+      {
+        "threshold": 0.1478538517300954,
+        "sensitivity": 0.772,
+        "false_alerts_per_patient_day": 0.064,
+        "specificity": 0.934
+      },
+      {
+        "threshold": 0.15029272973642932,
+        "sensitivity": 0.763,
+        "false_alerts_per_patient_day": 0.0613,
+        "specificity": 0.936
+      },
+      {
+        "threshold": 0.15591118552851807,
+        "sensitivity": 0.763,
+        "false_alerts_per_patient_day": 0.0584,
+        "specificity": 0.94
+      },
+      {
+        "threshold": 0.16239331648340227,
+        "sensitivity": 0.754,
+        "false_alerts_per_patient_day": 0.056,
+        "specificity": 0.942
+      },
+      {
+        "threshold": 0.17202071721202072,
+        "sensitivity": 0.751,
+        "false_alerts_per_patient_day": 0.0527,
+        "specificity": 0.945
+      },
+      {
+        "threshold": 0.17605623370548223,
+        "sensitivity": 0.734,
+        "false_alerts_per_patient_day": 0.0505,
+        "specificity": 0.948
+      },
+      {
+        "threshold": 0.1824687894932004,
+        "sensitivity": 0.716,
+        "false_alerts_per_patient_day": 0.0486,
+        "specificity": 0.95
+      },
+      {
+        "threshold": 0.18614290642076564,
+        "sensitivity": 0.582,
+        "false_alerts_per_patient_day": 0.0409,
+        "specificity": 0.958
+      },
+      {
+        "threshold": 0.1929172144943375,
+        "sensitivity": 0.556,
+        "false_alerts_per_patient_day": 0.0384,
+        "specificity": 0.96
+      },
+      {
+        "threshold": 0.2063991433724146,
+        "sensitivity": 0.547,
+        "false_alerts_per_patient_day": 0.0358,
+        "specificity": 0.963
+      },
+      {
+        "threshold": 0.21583801152455367,
+        "sensitivity": 0.538,
+        "false_alerts_per_patient_day": 0.033,
+        "specificity": 0.966
+      },
+      {
+        "threshold": 0.22532530137998402,
+        "sensitivity": 0.518,
+        "false_alerts_per_patient_day": 0.0308,
+        "specificity": 0.968
+      },
+      {
+        "threshold": 0.2298380608423496,
+        "sensitivity": 0.503,
+        "false_alerts_per_patient_day": 0.0278,
+        "specificity": 0.971
+      },
+      {
+        "threshold": 0.24213897465343773,
+        "sensitivity": 0.491,
+        "false_alerts_per_patient_day": 0.0251,
+        "specificity": 0.974
+      },
+      {
+        "threshold": 0.25308283859976644,
+        "sensitivity": 0.482,
+        "false_alerts_per_patient_day": 0.0242,
+        "specificity": 0.975
+      },
+      {
+        "threshold": 0.2545748303630237,
+        "sensitivity": 0.45,
+        "false_alerts_per_patient_day": 0.0209,
+        "specificity": 0.978
+      },
+      {
+        "threshold": 0.26697941780906315,
+        "sensitivity": 0.424,
+        "false_alerts_per_patient_day": 0.0182,
+        "specificity": 0.981
+      },
+      {
+        "threshold": 0.27379461506197234,
+        "sensitivity": 0.404,
+        "false_alerts_per_patient_day": 0.0165,
+        "specificity": 0.983
+      },
+      {
+        "threshold": 0.2835994281651373,
+        "sensitivity": 0.301,
+        "false_alerts_per_patient_day": 0.012,
+        "specificity": 0.988
+      },
+      {
+        "threshold": 0.28434866831374117,
+        "sensitivity": 0.181,
+        "false_alerts_per_patient_day": 0.0091,
+        "specificity": 0.991
+      },
+      {
+        "threshold": 0.3288606317563028,
+        "sensitivity": 0.091,
+        "false_alerts_per_patient_day": 0.0029,
+        "specificity": 0.997
+      }
+    ],
+    "target_false_alerts_per_patient_day": 0.045,
+    "score_mapping": "0 to 0, p_watch to 30, p_urgent to 60, 1 to 100 (piecewise linear on calibrated probability)"
+  },
+  "confounder": {
+    "infection_windows": 242,
+    "matched_sensitivity_target": 0.9,
+    "fused": {
+      "threshold": 0.0725,
+      "sensitivity": 0.904,
+      "false_alerts_per_patient_day": 0.126,
+      "infection_windows_alerted": 173
+    },
+    "wearable_only": {
+      "threshold": 0.0825,
+      "sensitivity": 0.901,
+      "false_alerts_per_patient_day": 0.1169,
+      "infection_windows_alerted": 164
+    },
+    "watch_only": {
+      "threshold": 0.0545,
+      "sensitivity": 0.904,
+      "false_alerts_per_patient_day": 0.194,
+      "infection_windows_alerted": 233
+    }
+  },
+  "forecast": {
+    "rhr_h1": {
+      "mae": 2.49,
+      "coverage_p10_p90": 0.714,
+      "persistence_mae": 2.8,
+      "n": 5146
+    },
+    "rhr_h2": {
+      "mae": 2.71,
+      "coverage_p10_p90": 0.729,
+      "persistence_mae": 3.04,
+      "n": 5101
+    },
+    "rhr_h3": {
+      "mae": 2.73,
+      "coverage_p10_p90": 0.745,
+      "persistence_mae": 3.24,
+      "n": 5058
+    },
+    "sbp_h1": {
+      "mae": 6.25,
+      "coverage_p10_p90": 0.74,
+      "persistence_mae": 7.84,
+      "n": 3951
+    },
+    "sbp_h2": {
+      "mae": 6.78,
+      "coverage_p10_p90": 0.733,
+      "persistence_mae": 8.15,
+      "n": 3918
+    },
+    "sbp_h3": {
+      "mae": 7.0,
+      "coverage_p10_p90": 0.735,
+      "persistence_mae": 8.6,
+      "n": 3885
+    },
+    "rhr_mae_day1": 2.49,
+    "sbp_mae_day1": 6.25,
+    "coverage_p10_p90": 0.733
+  },
+  "physiology": {
+    "method": "Empirical-Bayes partial pooling of per-person lagged slopes fitted on calm days",
+    "pairs": [
+      {
+        "key": "sleep_rhr",
+        "label": "Sleep to next-night resting heart rate",
+        "unit": "bpm per extra hour of sleep",
+        "n_patients": 239,
+        "true_mean": -1.086,
+        "true_sd": 0.496,
+        "r_pooled": 0.715,
+        "r_raw": 0.726,
+        "mae_pooled": 0.279,
+        "mae_raw": 0.333,
+        "mae_population": 0.396,
+        "coverage_80": 0.724,
+        "cohort_mean_estimate": -1.028,
+        "tau": 0.43
+      },
+      {
+        "key": "steps_rhr",
+        "label": "Walking to next-night resting heart rate",
+        "unit": "bpm per extra 1,000 steps",
+        "n_patients": 239,
+        "true_mean": -0.313,
+        "true_sd": 0.147,
+        "r_pooled": 0.66,
+        "r_raw": 0.583,
+        "mae_pooled": 0.088,
+        "mae_raw": 0.129,
+        "mae_population": 0.118,
+        "coverage_80": 0.762,
+        "cohort_mean_estimate": -0.321,
+        "tau": 0.141
+      },
+      {
+        "key": "steps_sbp",
+        "label": "Walking to next-morning systolic bp",
+        "unit": "mmHg per extra 1,000 steps",
+        "n_patients": 239,
+        "true_mean": -1.196,
+        "true_sd": 0.517,
+        "r_pooled": 0.667,
+        "r_raw": 0.628,
+        "mae_pooled": 0.303,
+        "mae_raw": 0.49,
+        "mae_population": 0.423,
+        "coverage_80": 0.745,
+        "cohort_mean_estimate": -1.251,
+        "tau": 0.496
+      },
+      {
+        "key": "sleep_hrv",
+        "label": "Sleep to next-night hrv",
+        "unit": "% HRV per extra hour of sleep",
+        "n_patients": 239,
+        "true_mean": 4.502,
+        "true_sd": 2.013,
+        "r_pooled": 0.592,
+        "r_raw": 0.587,
+        "mae_pooled": 1.317,
+        "mae_raw": 2.069,
+        "mae_population": 1.603,
+        "coverage_80": 0.753,
+        "cohort_mean_estimate": 4.411,
+        "tau": 2.066
+      }
+    ],
+    "note": "On the synthetic cohort the generator's true per-person slopes are known, so the twin's recovery of each person's physiology is measured directly. Pooled = the twin's estimate; raw = per-person regression with no pooling; population = one slope for everyone."
+  },
+  "calibration": {
+    "method": "Platt scaling (logistic on logit of raw score) fit on pooled out-of-fold predictions",
+    "bins": [
+      {
+        "p_mean": 0.0014,
+        "obs": 0.0006,
+        "n": 3568
+      },
+      {
+        "p_mean": 0.0023,
+        "obs": 0.0022,
+        "n": 3603
+      },
+      {
+        "p_mean": 0.0034,
+        "obs": 0.0056,
+        "n": 3586
+      },
+      {
+        "p_mean": 0.0056,
+        "obs": 0.0053,
+        "n": 3585
+      },
+      {
+        "p_mean": 0.0101,
+        "obs": 0.01,
+        "n": 3586
+      },
+      {
+        "p_mean": 0.0212,
+        "obs": 0.0218,
+        "n": 3585
+      },
+      {
+        "p_mean": 0.0556,
+        "obs": 0.0544,
+        "n": 3586
+      },
+      {
+        "p_mean": 0.1904,
+        "obs": 0.1821,
+        "n": 3586
+      }
+    ]
+  },
+  "features": [
+    {
+      "name": "sbp_slope_7d",
+      "importance": 0.2519,
+      "group": "wearable"
+    },
+    {
+      "name": "ns_state",
+      "importance": 0.1644,
+      "group": "wearable"
+    },
+    {
+      "name": "sbp_unexpl",
+      "importance": 0.1207,
+      "group": "wearable"
+    },
+    {
+      "name": "sbp_dev",
+      "importance": 0.0705,
+      "group": "wearable"
+    },
+    {
+      "name": "hrv_unexpl",
+      "importance": 0.0606,
+      "group": "wearable"
+    },
+    {
+      "name": "sleep_debt_7d",
+      "importance": 0.0476,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_z",
+      "importance": 0.0446,
+      "group": "wearable"
+    },
+    {
+      "name": "framingham_10y",
+      "importance": 0.0346,
+      "group": "ehr"
+    },
+    {
+      "name": "sbp_unexpl_7d",
+      "importance": 0.0305,
+      "group": "wearable"
+    },
+    {
+      "name": "activity_7d_z",
+      "importance": 0.0266,
+      "group": "wearable"
+    },
+    {
+      "name": "sbp_last",
+      "importance": 0.0247,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_dev_bbadj",
+      "importance": 0.0234,
+      "group": "ehr"
+    },
+    {
+      "name": "hrv_dev",
+      "importance": 0.0227,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_dev_3d",
+      "importance": 0.02,
+      "group": "wearable"
+    },
+    {
+      "name": "sleep_min",
+      "importance": 0.0105,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_dev",
+      "importance": 0.01,
+      "group": "wearable"
+    },
+    {
+      "name": "steps_z",
+      "importance": 0.0099,
+      "group": "wearable"
+    },
+    {
+      "name": "sleep_min_dev",
+      "importance": 0.0047,
+      "group": "wearable"
+    },
+    {
+      "name": "sbp_7d_mean",
+      "importance": 0.0036,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_unexpl",
+      "importance": 0.0033,
+      "group": "wearable"
+    },
+    {
+      "name": "lnrmssd",
+      "importance": 0.0032,
+      "group": "wearable"
+    },
+    {
+      "name": "resp_dev",
+      "importance": 0.0025,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_dev_max3",
+      "importance": 0.0022,
+      "group": "wearable"
+    },
+    {
+      "name": "steps",
+      "importance": 0.0017,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr",
+      "importance": 0.0016,
+      "group": "wearable"
+    },
+    {
+      "name": "hrv_drop_pct",
+      "importance": 0.0015,
+      "group": "wearable"
+    },
+    {
+      "name": "sleep_eff",
+      "importance": 0.001,
+      "group": "wearable"
+    },
+    {
+      "name": "sleep_eff_dev",
+      "importance": 0.0008,
+      "group": "wearable"
+    },
+    {
+      "name": "resp_rate",
+      "importance": 0.0005,
+      "group": "wearable"
+    },
+    {
+      "name": "hrv_7d",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "hrv_below_swc",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "hrv_days_below",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "deep_pct",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "steps_z_3d",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "spo2",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "spo2_dev",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "dbp_7d_mean",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "bp_readings_7d",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "sbp_days_since",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "missing_7d",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "wear_pct_28d",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "ns_days",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "rhr_unexpl_3d",
+      "importance": 0.0,
+      "group": "wearable"
+    },
+    {
+      "name": "genetic_tier",
+      "importance": 0.0,
+      "group": "ehr"
+    },
+    {
+      "name": "adherence_pct",
+      "importance": 0.0,
+      "group": "ehr"
+    },
+    {
+      "name": "diabetes",
+      "importance": 0.0,
+      "group": "ehr"
+    },
+    {
+      "name": "prior_mi",
+      "importance": 0.0,
+      "group": "ehr"
+    },
+    {
+      "name": "ckd",
+      "importance": 0.0,
+      "group": "ehr"
+    },
+    {
+      "name": "family_history_cvd",
+      "importance": 0.0,
+      "group": "ehr"
+    },
+    {
+      "name": "on_beta_blocker",
+      "importance": 0.0,
+      "group": "ehr"
+    }
+  ],
+  "limitations": [
+    "Trained and evaluated on a synthetic cohort. Reported numbers describe how well the twin recovers injected episodes, not clinical performance.",
+    "Strain-episode ground truth is defined by the generator; real adverse events are heterogeneous and rarer.",
+    "Consumer-watch data syncs hourly to daily; the twin scores once per night and cannot see minute-level emergencies.",
+    "Framingham 2008 under-estimates risk in South Asians; the WHO 2019 SEAR chart is the planned replacement.",
+    "No validation on any Indian clinical dataset yet; BODH benchmarking and an ABDM-sandbox pilot are roadmap items.",
+    "Personal response slopes come from everyday swings in sleep and activity (observational, not randomised); medicine, salt and alcohol effects in the what-if are population estimates because the twin has no personal data on them.",
+    "Not a medical device. Outputs are decision support for a registered practitioner, never a diagnosis."
+  ],
+  "published_anchors": [
+    {
+      "name": "NightSignal, infection from overnight RHR (Alavi et al., Nat Med 2021)",
+      "sensitivity": 0.8,
+      "specificity": 0.877,
+      "lead": "median 3 days",
+      "note": "Rule family reused here; task differs"
+    },
+    {
+      "name": "Epic Deterioration Index, inpatient (Singh et al., 2020)",
+      "auroc": 0.76,
+      "lead": "median 28 h",
+      "note": "Inpatient EHR only"
+    },
+    {
+      "name": "Dozee early warning, Indian wards (Yadav et al., 2024)",
+      "specificity": 0.42,
+      "lead": "mean 16 h",
+      "note": "Contactless bedside sensor; specificity 0.19 to 0.42 across tiers"
+    },
+    {
+      "name": "All of Us Fitbit + EHR fusion (2025)",
+      "auroc_gain": "+8.9% average, +10.7% hypertension",
+      "note": "Concatenation + logistic regression"
+    }
+  ],
+  "regulatory": {
+    "status": "Research proof-of-concept on synthetic data; not a medical device under the Medical Devices Rules 2017",
+    "cdsco": "A production version would be Medical Device Software, likely Class B or C under CDSCO's medical device software guidance (30 July 2026); training-data composition and synthetic-versus-real disclosure are in this card; retraining follows a versioned Algorithm Change Protocol",
+    "dpdp": "Built DPDP-ready ahead of the 13 May 2027 commencement of the consent, breach and retention rules",
+    "telemedicine": "No AI prescribing; patient-facing text never changes doses (Telemedicine Practice Guidelines 2020)"
+  },
+  "leakage_tests": {
+    "passed": null,
+    "tests": [
+      "no_future_values_in_features",
+      "patient_level_split",
+      "label_window_excludes_t"
+    ],
+    "note": "Set by `pytest backend/tests/test_leakage.py`; see docs/MODEL_CARD.md"
+  },
+  "training_seconds": 310.6
+}

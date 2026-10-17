@@ -1,0 +1,86 @@
+{
+  "id": "P-0007",
+  "method": "Empirical-Bayes partial pooling of per-person response slopes fitted on calm days",
+  "calm_days_used": 86,
+  "days_available": 112,
+  "responses": [
+    {
+      "key": "steps_sbp",
+      "lever": "walking",
+      "lever_label": "Walking",
+      "outcome": "sbp",
+      "outcome_label": "Next-morning systolic BP",
+      "per": "extra 1,000 steps",
+      "unit": "mmHg",
+      "personal": -1.85,
+      "interval": [
+        -2.6,
+        -1.1
+      ],
+      "cohort": -1.1,
+      "relative_to_cohort": 1.68,
+      "evidence": "strong",
+      "plain": "Every extra 1,000 steps usually lowers Meera's next-morning BP by about 1.9 mmHg. Most people: 1.1 mmHg."
+    },
+    {
+      "key": "sleep_rhr",
+      "lever": "sleep",
+      "lever_label": "Sleep",
+      "outcome": "rhr",
+      "outcome_label": "Next-night resting heart rate",
+      "per": "extra hour of sleep",
+      "unit": "bpm",
+      "personal": -1.42,
+      "interval": [
+        -1.95,
+        -0.89
+      ],
+      "cohort": -1.02,
+      "relative_to_cohort": 1.39,
+      "evidence": "strong",
+      "plain": "An extra hour of sleep usually lowers Meera's next-night heart rate by about 1.4 bpm. Most people: 1.0 bpm."
+    },
+    {
+      "key": "sleep_hrv",
+      "lever": "sleep",
+      "lever_label": "Sleep",
+      "outcome": "hrv",
+      "outcome_label": "Next-night HRV",
+      "per": "extra hour of sleep",
+      "unit": "% HRV",
+      "personal": 4.8,
+      "interval": [
+        2.1,
+        7.4
+      ],
+      "cohort": 4.0,
+      "relative_to_cohort": 1.2,
+      "evidence": "moderate",
+      "plain": "An extra hour of sleep usually lifts Meera's next-night HRV by about 5%. Most people: 4%."
+    },
+    {
+      "key": "steps_rhr",
+      "lever": "walking",
+      "lever_label": "Walking",
+      "outcome": "rhr",
+      "outcome_label": "Next-night resting heart rate",
+      "per": "extra 1,000 steps",
+      "unit": "bpm",
+      "personal": -0.31,
+      "interval": [
+        -0.52,
+        -0.1
+      ],
+      "cohort": -0.28,
+      "relative_to_cohort": 1.1,
+      "evidence": "moderate",
+      "plain": "Every extra 1,000 steps lowers Meera's next-night heart rate by about 0.3 bpm, close to most people."
+    }
+  ],
+  "best_lever": {
+    "key": "steps_sbp",
+    "lever": "walking",
+    "plain": "Walking is Meera's strongest lever. A 30-minute walk (about 3,500 steps) is expected to lower her morning BP by about 6 mmHg."
+  },
+  "validation": null
+}

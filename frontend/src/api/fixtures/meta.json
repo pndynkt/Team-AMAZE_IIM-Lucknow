@@ -1,0 +1,11 @@
+{
+  "app": "Pratibimb",
+  "version": "1.0.0",
+  "as_of": "2026-10-12",
+  "cohort_size": 240,
+  "days": 120,
+  "condition": "Hypertension with cardiovascular risk",
+  "event_definition": "Cardiovascular strain episode within the next 72 hours",
+  "model_version": "fusion-lgbm-2026.10.12",
+  "demo_speed": 10
+}

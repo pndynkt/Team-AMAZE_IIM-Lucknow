@@ -1,0 +1,104 @@
+{
+  "id": "P-0007",
+  "first_name": "Meera",
+  "score": {
+    "value": 71,
+    "label": "Needs attention",
+    "ring_color": "urgent",
+    "state": "ready",
+    "nights_needed": 7,
+    "nights_available": 112
+  },
+  "drivers": [
+    {
+      "label": "Resting heart rate",
+      "value": "71 bpm",
+      "vs_baseline": "+9",
+      "arrow": "up",
+      "good": false
+    },
+    {
+      "label": "Sleep",
+      "value": "5 h 40 m",
+      "vs_baseline": "-1 h 10 m",
+      "arrow": "down",
+      "good": false
+    },
+    {
+      "label": "Steps",
+      "value": "3,800",
+      "vs_baseline": "-38%",
+      "arrow": "down",
+      "good": false
+    }
+  ],
+  "sentence": {
+    "en": "Your heart has been working harder than usual for three nights and your morning BP is rising. Please check your BP this evening and rest.",
+    "hi": "पिछली तीन रातों से आपका दिल सामान्य से ज़्यादा मेहनत कर रहा है और सुबह का BP बढ़ रहा है। कृपया आज शाम BP जाँचें और आराम करें।"
+  },
+  "checkin": {
+    "pending": true,
+    "question": {
+      "en": "How do you feel today?",
+      "hi": "आज आप कैसा महसूस कर रहे हैं?"
+    },
+    "options": [
+      "Fine",
+      "Tired",
+      "Dizzy",
+      "Chest discomfort"
+    ]
+  },
+  "freshness": {
+    "last_sample_at": "2026-10-12T06:40:00+05:30",
+    "minutes_ago": 47,
+    "label": "fresh"
+  },
+  "device": {
+    "brand": "Noise",
+    "simulated": true
+  },
+  "contacts": [
+    {
+      "name": "Arjun",
+      "relation": "Son"
+    },
+    {
+      "name": "Lakshmi",
+      "relation": "Sister"
+    }
+  ],
+  "doctor": {
+    "name": "Dr Kavya Rao",
+    "reviewed_at": "2026-10-12T05:30:00+05:30"
+  },
+  "share_card": {
+    "title": "Meera's day",
+    "lines": [
+      "Heart: working harder (+9 bpm)",
+      "Sleep: 5 h 40 m",
+      "BP: 151/92 this morning"
+    ],
+    "footer": "Reviewed by Dr Kavya Rao, Pratibimb"
+  },
+  "what_helps": [
+    {
+      "lever": "walking",
+      "en": "A 30-minute walk usually brings your morning BP down by about 6 mmHg.",
+      "hi": "30 मिनट की सैर से आपका सुबह का BP आम तौर पर लगभग 6 mmHg कम होता है।",
+      "strength": "strong"
+    },
+    {
+      "lever": "sleep",
+      "en": "An extra hour of sleep usually calms your heart rate the next night by about 1.4 beats a minute.",
+      "hi": "एक घंटा ज़्यादा सोने से अगली रात आपकी हृदय गति आम तौर पर लगभग 1.4 धड़कन प्रति मिनट कम होती है।",
+      "strength": "strong"
+    },
+    {
+      "lever": "sleep",
+      "en": "Sleeping a little longer also helps your heart recover overnight.",
+      "hi": "थोड़ा ज़्यादा सोने से रात में आपका दिल बेहतर आराम करता है।",
+      "strength": "moderate"
+    }
+  ]
+}

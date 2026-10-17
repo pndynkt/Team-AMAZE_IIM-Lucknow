@@ -1,0 +1,86 @@
+{
+  "priors": {
+    "mu": {
+      "sleep_rhr": -1.0279253530742738,
+      "steps_rhr": -0.3211113080609991,
+      "steps_sbp": -1.2507366923297323,
+      "sleep_hrv": 4.4106296653128085
+    },
+    "tau2": {
+      "sleep_rhr": 0.1845635625147792,
+      "steps_rhr": 0.019928408019006014,
+      "steps_sbp": 0.24603701790686217,
+      "sleep_hrv": 4.267271131543104
+    }
+  },
+  "validation": {
+    "method": "Empirical-Bayes partial pooling of per-person lagged slopes fitted on calm days",
+    "pairs": [
+      {
+        "key": "sleep_rhr",
+        "label": "Sleep to next-night resting heart rate",
+        "unit": "bpm per extra hour of sleep",
+        "n_patients": 239,
+        "true_mean": -1.086,
+        "true_sd": 0.496,
+        "r_pooled": 0.715,
+        "r_raw": 0.726,
+        "mae_pooled": 0.279,
+        "mae_raw": 0.333,
+        "mae_population": 0.396,
+        "coverage_80": 0.724,
+        "cohort_mean_estimate": -1.028,
+        "tau": 0.43
+      },
+      {
+        "key": "steps_rhr",
+        "label": "Walking to next-night resting heart rate",
+        "unit": "bpm per extra 1,000 steps",
+        "n_patients": 239,
+        "true_mean": -0.313,
+        "true_sd": 0.147,
+        "r_pooled": 0.66,
+        "r_raw": 0.583,
+        "mae_pooled": 0.088,
+        "mae_raw": 0.129,
+        "mae_population": 0.118,
+        "coverage_80": 0.762,
+        "cohort_mean_estimate": -0.321,
+        "tau": 0.141
+      },
+      {
+        "key": "steps_sbp",
+        "label": "Walking to next-morning systolic bp",
+        "unit": "mmHg per extra 1,000 steps",
+        "n_patients": 239,
+        "true_mean": -1.196,
+        "true_sd": 0.517,
+        "r_pooled": 0.667,
+        "r_raw": 0.628,
+        "mae_pooled": 0.303,
+        "mae_raw": 0.49,
+        "mae_population": 0.423,
+        "coverage_80": 0.745,
+        "cohort_mean_estimate": -1.251,
+        "tau": 0.496
+      },
+      {
+        "key": "sleep_hrv",
+        "label": "Sleep to next-night hrv",
+        "unit": "% HRV per extra hour of sleep",
+        "n_patients": 239,
+        "true_mean": 4.502,
+        "true_sd": 2.013,
+        "r_pooled": 0.592,
+        "r_raw": 0.587,
+        "mae_pooled": 1.317,
+        "mae_raw": 2.069,
+        "mae_population": 1.603,
+        "coverage_80": 0.753,
+        "cohort_mean_estimate": 4.411,
+        "tau": 2.066
+      }
+    ],
+    "note": "On the synthetic cohort the generator's true per-person slopes are known, so the twin's recovery of each person's physiology is measured directly. Pooled = the twin's estimate; raw = per-person regression with no pooling; population = one slope for everyone."
+  }
+}

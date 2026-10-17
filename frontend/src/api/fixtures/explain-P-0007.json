@@ -1,0 +1,87 @@
+{
+  "id": "P-0007",
+  "as_of": "2026-10-12",
+  "probability_72h": 0.71,
+  "base_rate": 0.06,
+  "contributors": [
+    {
+      "feature": "rhr_dev_3d",
+      "label": "Overnight HR +9 bpm vs 28-day baseline (3-night mean)",
+      "value": 9.1,
+      "shap": 0.21,
+      "direction": "up",
+      "group": "wearable"
+    },
+    {
+      "feature": "sbp_slope_7d",
+      "label": "Home SBP rising 2.4 mmHg/day over 7 days",
+      "value": 2.4,
+      "shap": 0.14,
+      "direction": "up",
+      "group": "wearable"
+    },
+    {
+      "feature": "hrv_below_swc",
+      "label": "HRV below your smallest worthwhile change for 4 nights",
+      "value": 1,
+      "shap": 0.09,
+      "direction": "up",
+      "group": "wearable"
+    },
+    {
+      "feature": "framingham_10y",
+      "label": "10-year Framingham risk 18.4% (high)",
+      "value": 18.4,
+      "shap": 0.05,
+      "direction": "up",
+      "group": "ehr"
+    },
+    {
+      "feature": "steps_z",
+      "label": "Steps 38% below your usual",
+      "value": -1.2,
+      "shap": 0.04,
+      "direction": "up",
+      "group": "wearable"
+    },
+    {
+      "feature": "med_adherence_30d",
+      "label": "Amlodipine adherence 72% over 30 days",
+      "value": 72,
+      "shap": 0.03,
+      "direction": "up",
+      "group": "ehr"
+    }
+  ],
+  "protective": [
+    {
+      "feature": "on_statin",
+      "label": "On statin",
+      "value": 1,
+      "shap": -0.02,
+      "direction": "down",
+      "group": "ehr"
+    },
+    {
+      "feature": "non_smoker",
+      "label": "Non-smoker",
+      "value": 1,
+      "shap": -0.01,
+      "direction": "down",
+      "group": "ehr"
+    }
+  ],
+  "rule_state": {
+    "ns_state": "red",
+    "rule": "Overnight RHR ≥ +4 bpm above 28-day median for 2 consecutive nights",
+    "days_in_state": 3
+  },
+  "model_version": "fusion-lgbm-2026.10.12",
+  "inputs_used": [
+    "28 nights of HR",
+    "26 nights of HRV",
+    "19 home BP readings",
+    "EHR: 4 conditions, 3 medications, 6 labs"
+  ],
+  "stale_inputs": []
+}

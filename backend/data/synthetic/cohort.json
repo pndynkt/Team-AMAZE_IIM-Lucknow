@@ -1,0 +1,22 @@
+{
+  "seed": 42,
+  "n_patients": 240,
+  "days": 120,
+  "as_of": "2026-10-12",
+  "horizon_days": 3,
+  "base_episode_rate_per_100_days": 0.33,
+  "infection_rate_per_100_days": 0.9,
+  "party_night_rate_per_100_days": 2.5,
+  "missed_dose_rate_per_100_days": 3.0,
+  "travel_day_rate_per_100_days": 1.0,
+  "missing_night_prob": 0.08,
+  "device_mix": {
+    "Noise": 0.27,
+    "boAt": 0.14,
+    "Fire-Boltt": 0.1,
+    "Samsung": 0.08,
+    "Amazfit": 0.06,
+    "Apple": 0.02,
+    "Other": 0.33
+  }
+}

@@ -1,0 +1,13 @@
+services:
+  pratibimb:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      PRATIBIMB_DEMO_SPEED: "10"
+    volumes:
+      - pratibimb-db:/app/backend/pratibimb.db
+volumes:
+  pratibimb-db:

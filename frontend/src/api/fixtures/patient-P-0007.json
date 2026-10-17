@@ -1,0 +1,189 @@
+{
+  "id": "P-0007",
+  "name": "Meera Iyer",
+  "age": 58,
+  "sex": "F",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "abha_masked": "91-XXXX-XXXX-4821",
+  "consent": {
+    "ehr": true,
+    "wearable": true,
+    "ai_predictions": true,
+    "emergency_contacts": true,
+    "updated_at": "2026-09-02T10:15:00+05:30"
+  },
+  "ehr": {
+    "conditions": [
+      {
+        "code": "59621000",
+        "system": "SNOMED",
+        "display": "Essential hypertension",
+        "onset": "2019-03-01"
+      },
+      {
+        "code": "44054006",
+        "system": "SNOMED",
+        "display": "Type 2 diabetes mellitus",
+        "onset": "2021-07-14"
+      },
+      {
+        "code": "55822004",
+        "system": "SNOMED",
+        "display": "Hyperlipidaemia",
+        "onset": "2021-07-14"
+      },
+      {
+        "code": "414916001",
+        "system": "SNOMED",
+        "display": "Obesity (BMI 28 to 30)",
+        "onset": "2023-01-10"
+      }
+    ],
+    "medications": [
+      {
+        "name": "Amlodipine 5 mg",
+        "class": "CCB",
+        "adherence_30d_pct": 72
+      },
+      {
+        "name": "Metformin 500 mg",
+        "class": "Biguanide",
+        "adherence_30d_pct": 88
+      },
+      {
+        "name": "Atorvastatin 10 mg",
+        "class": "Statin",
+        "adherence_30d_pct": 91
+      }
+    ],
+    "labs": [
+      {
+        "name": "HbA1c",
+        "loinc": "4548-4",
+        "value": 7.1,
+        "unit": "%",
+        "date": "2026-08-20",
+        "flag": "high"
+      },
+      {
+        "name": "LDL cholesterol",
+        "loinc": "13457-7",
+        "value": 118,
+        "unit": "mg/dL",
+        "date": "2026-08-20",
+        "flag": "high"
+      },
+      {
+        "name": "HDL cholesterol",
+        "loinc": "2085-9",
+        "value": 44,
+        "unit": "mg/dL",
+        "date": "2026-08-20",
+        "flag": "normal"
+      },
+      {
+        "name": "Creatinine",
+        "loinc": "2160-0",
+        "value": 0.9,
+        "unit": "mg/dL",
+        "date": "2026-08-20",
+        "flag": "normal"
+      },
+      {
+        "name": "eGFR",
+        "loinc": "62238-1",
+        "value": 78,
+        "unit": "mL/min/1.73m2",
+        "date": "2026-08-20",
+        "flag": "normal"
+      },
+      {
+        "name": "Fasting glucose",
+        "loinc": "1558-6",
+        "value": 134,
+        "unit": "mg/dL",
+        "date": "2026-08-20",
+        "flag": "high"
+      }
+    ],
+    "vitals_clinic": {
+      "sbp": 148,
+      "dbp": 92,
+      "bmi": 28.4,
+      "date": "2026-08-20"
+    },
+    "genetics": {
+      "polygenic_risk_tier": "high",
+      "note": "Simulated CAD polygenic risk tier (synthetic)"
+    },
+    "family_history": [
+      "Father: myocardial infarction at 61",
+      "Mother: type 2 diabetes"
+    ],
+    "smoker": false,
+    "diabetes": true,
+    "ckd": false,
+    "prior_mi": false
+  },
+  "static_risk": {
+    "framingham_10y_pct": 18.4,
+    "label": "high",
+    "south_asian_note": "Framingham under-estimates risk in South Asians; WHO SEAR chart planned."
+  },
+  "device": {
+    "brand": "Noise",
+    "model": "ColorFit Pro 5",
+    "source": "simulated",
+    "simulated": true,
+    "sync_interval": "hourly"
+  },
+  "baselines": {
+    "rhr_28d_median": 62,
+    "lnrmssd_60d_mean": 3.61,
+    "lnrmssd_swc": 0.08,
+    "sbp_28d_mean": 136.2,
+    "nights_available": 112
+  },
+  "current": {
+    "risk_score": 71,
+    "tier": "urgent",
+    "ns_state": "red",
+    "probability_72h": 0.71,
+    "probability_band": [
+      0.58,
+      0.8
+    ],
+    "as_of": "2026-10-12"
+  },
+  "emergency_contacts": [
+    {
+      "id": "C1",
+      "name": "Arjun Iyer",
+      "relation": "Son",
+      "phone_masked": "+91 98XXX XX412",
+      "channels": [
+        "sms",
+        "whatsapp",
+        "voice"
+      ],
+      "consented_at": "2026-09-02T10:20:00+05:30"
+    },
+    {
+      "id": "C2",
+      "name": "Lakshmi Iyer",
+      "relation": "Sister",
+      "phone_masked": "+91 99XXX XX087",
+      "channels": [
+        "sms",
+        "voice"
+      ],
+      "consented_at": "2026-09-02T10:22:00+05:30"
+    }
+  ],
+  "clinician": {
+    "name": "Dr Kavya Rao",
+    "role": "Physician",
+    "sla_minutes": 60
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ES-0012",
+  "patient_id": "P-0007",
+  "patient_name": "Meera Iyer",
+  "trigger": "sos",
+  "started_at": "2026-10-12T07:25:40+05:30",
+  "state": "contact_1",
+  "countdown_ends_at": "2026-10-12T07:26:40+05:30",
+  "steps": [
+    {
+      "n": 1,
+      "state": "user_prompt",
+      "at": "2026-10-12T07:25:40+05:30",
+      "detail": "Full-screen alert, sound + vibration, 60 s to tap I'm OK",
+      "status": "no_response"
+    },
+    {
+      "n": 2,
+      "state": "contact_1",
+      "at": "2026-10-12T07:26:40+05:30",
+      "detail": "Arjun Iyer: push + SMS (-S template) + WhatsApp utility + voice call from 1600-series number",
+      "status": "sent",
+      "messages": [
+        {
+          "channel": "sms",
+          "to": "+91 98XXX XX412",
+          "template_id": "PRATIBIMB-S-001",
+          "header": "PRTBMB-S",
+          "body": "Pratibimb: Meera Iyer has not responded to a health check-in. Last location: https://maps.app/x/7h2k, Call her or tap to call 112. Reply STOP to opt out.",
+          "mock": true
+        },
+        {
+          "channel": "whatsapp",
+          "template": "emergency_checkin_v1",
+          "to": "+91 98XXX XX412",
+          "mock": true
+        },
+        {
+          "channel": "voice",
+          "from": "1600-XXX-XXXX",
+          "script": "This is Pratibimb. Meera has not responded to a health check-in. Press 1 if you can reach her. Press 2 to call 112 on her behalf.",
+          "mock": true
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "state": "contact_2",
+      "at": "2026-10-12T07:28:40+05:30",
+      "detail": "Lakshmi Iyer: SMS (-S template) + voice call",
+      "status": "pending"
+    },
+    {
+      "n": 4,
+      "state": "doctor",
+      "at": "2026-10-12T07:30:40+05:30",
+      "detail": "Dr Kavya Rao alerted, 60-minute SLA",
+      "status": "pending"
+    }
+  ],
+  "location": {
+    "lat": 12.97,
+    "lng": 77.59,
+    "accuracy_m": 25
+  },
+  "actions": {
+    "call_112_url": "tel:112",
+    "uhi_ambulance_url": "https://uhi.example/ambulance?ref=ES-0012",
+    "mock": true
+  },
+  "resolved_by": null,
+  "outcome": null
+}

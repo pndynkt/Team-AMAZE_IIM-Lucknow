@@ -1,0 +1,459 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Pratibimb design tokens, version 2 (see docs/DESIGN.md).
+  Two streams, one reflection: peacock is the live wearable stream, sandalwood is the
+  health record, lotus is the heart and the person's own space, mist is the ground.
+  Colours are RGB triplets so Tailwind can apply alpha; the --hex-* copies feed charts.
+*/
+:root {
+  color-scheme: light;
+
+  --mist: 241 246 245;
+  --surface: 255 255 255;
+  --surface-2: 247 250 249;
+  --mist-deep: 221 232 230;
+  --line: rgba(16, 48, 47, 0.09);
+  --line-strong: rgba(16, 48, 47, 0.16);
+
+  --ink: 16 48 47;
+  --ink-2: 70 96 94;
+  /* #5A7371: a shade darker than the spec's #5E7775 so captions keep 4.5:1 on mist as well as white */
+  --ink-3: 90 115 113;
+
+  --peacock: 11 127 134;
+  --peacock-deep: 8 106 112;
+  --peacock-soft: 220 239 239;
+  --on-peacock: 255 255 255;
+
+  --sandalwood: 168 112 60;
+  --sandalwood-text: 138 90 43;
+  --sandalwood-soft: 245 234 223;
+
+  --lotus: 217 102 142;
+  --lotus-text: 178 63 105;
+  --lotus-soft: 251 230 238;
+
+  --dawn: 255 243 234;
+  --dawn-glow: 246 199 166;
+
+  /* clinical tiers: leaf, turmeric, sindoor, stone */
+  --leaf: 24 122 76;
+  --leaf-soft: 227 244 235;
+  --turmeric: 148 97 0;
+  --turmeric-soft: 253 241 214;
+  --sindoor: 176 58 35;
+  --sindoor-soft: 252 230 225;
+  --sindoor-solid: 196 66 40;
+  --stone: 90 115 113;
+  --stone-soft: 233 238 237;
+
+  /* metric identity (glyphs, legends, small labels only) */
+  --m-rhr: 217 102 142;
+  --m-hrv: 76 127 208;
+  --m-bp: 11 127 134;
+  --m-sleep: 91 108 201;
+  --m-steps: 78 138 49;
+  --m-spo2: 46 143 191;
+  --m-resp: 36 151 140;
+  --m-record: 168 112 60;
+
+  /* literal hex for charts and inline SVG */
+  --hex-mist: #f1f6f5;
+  --hex-surface: #ffffff;
+  --hex-surface-2: #f7faf9;
+  --hex-mist-deep: #dde8e6;
+  --hex-ink: #10302f;
+  --hex-ink-2: #46605e;
+  --hex-ink-3: #5a7371;
+  --hex-peacock: #0b7f86;
+  --hex-peacock-deep: #086a70;
+  --hex-sandalwood: #a8703c;
+  --hex-lotus: #d9668e;
+  --hex-leaf: #187a4c;
+  --hex-leaf-fill: #2fa36b;
+  --hex-turmeric: #946100;
+  --hex-turmeric-fill: #e0a526;
+  --hex-sindoor: #b03a23;
+  --hex-sindoor-fill: #d9583c;
+  --hex-stone: #5a7371;
+
+  --shadow-rest: 0 1px 1px rgba(16, 48, 47, 0.04), 0 8px 28px -16px rgba(16, 48, 47, 0.16);
+  --shadow-lift: 0 24px 60px -24px rgba(16, 48, 47, 0.3);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --mist: 14 26 26;
+  --surface: 21 36 36;
+  --surface-2: 27 44 44;
+  --mist-deep: 35 57 58;
+  --line: rgba(232, 241, 239, 0.09);
+  --line-strong: rgba(232, 241, 239, 0.16);
+
+  --ink: 232 241 239;
+  --ink-2: 169 189 186;
+  --ink-3: 127 151 148;
+
+  --peacock: 63 193 192;
+  --peacock-deep: 63 193 192;
+  --peacock-soft: 26 64 64;
+  --on-peacock: 8 30 30;
+
+  --sandalwood: 214 160 106;
+  --sandalwood-text: 214 160 106;
+  --sandalwood-soft: 51 53 44;
+
+  --lotus: 240 141 176;
+  --lotus-text: 240 141 176;
+  --lotus-soft: 56 53 58;
+
+  --leaf: 76 195 138;
+  --leaf-soft: 30 61 52;
+  --turmeric: 230 180 74;
+  --turmeric-soft: 54 59 42;
+  --sindoor: 240 122 94;
+  --sindoor-soft: 56 50 45;
+  --sindoor-solid: 214 84 58;
+  --stone: 127 151 148;
+  --stone-soft: 38 54 54;
+
+  --hex-mist: #0e1a1a;
+  --hex-surface: #152424;
+  --hex-surface-2: #1b2c2c;
+  --hex-mist-deep: #23393a;
+  --hex-ink: #e8f1ef;
+  --hex-ink-2: #a9bdba;
+  --hex-ink-3: #7f9794;
+  --hex-peacock: #3fc1c0;
+  --hex-peacock-deep: #3fc1c0;
+  --hex-sandalwood: #d6a06a;
+  --hex-lotus: #f08db0;
+  --hex-leaf: #4cc38a;
+  --hex-leaf-fill: #4cc38a;
+  --hex-turmeric: #e6b44a;
+  --hex-turmeric-fill: #e6b44a;
+  --hex-sindoor: #f07a5e;
+  --hex-sindoor-fill: #f07a5e;
+  --hex-stone: #7f9794;
+
+  --shadow-rest: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 28px -16px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-mist font-sans text-ink;
+    font-size: 15px;
+    line-height: 1.5;
+    font-feature-settings: 'kern' 1;
+  }
+  ::selection {
+    background: rgb(var(--peacock) / 0.2);
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--peacock));
+    outline-offset: 2px;
+  }
+  button,
+  [role='button'] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  table,
+  input[type='number'] {
+    font-variant-numeric: tabular-nums;
+  }
+  [lang='hi'] {
+    font-family: 'Mukta', 'Figtree Variable', system-ui, sans-serif;
+  }
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+  /* the one strong panel per screen */
+  .panel {
+    @apply rounded-panel bg-surface shadow-rest;
+    border: 1px solid var(--line);
+  }
+  /* nested block inside a panel */
+  .block-inset {
+    @apply rounded-block bg-surface-2;
+  }
+  .hairline {
+    border-color: var(--line);
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .skeleton {
+    @apply rounded-block bg-mist-deep;
+    background-image: linear-gradient(90deg, rgb(var(--mist-deep)) 0%, rgb(var(--surface-2)) 50%, rgb(var(--mist-deep)) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+  .field {
+    @apply h-10 rounded-control border bg-surface px-3 text-[14px] text-ink placeholder:text-ink-3;
+    border-color: var(--line-strong);
+  }
+  .field:focus {
+    outline: none;
+    border-color: rgb(var(--peacock));
+    box-shadow: 0 0 0 3px rgb(var(--peacock) / 0.18);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--ink-3) / 0.35) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgb(var(--ink-3) / 0.35);
+    border-radius: 9999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Recharts polish: hairline grid, no focus outline on the svg wrapper */
+.recharts-cartesian-grid line {
+  stroke: var(--line);
+}
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}
+.recharts-text {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Range slider */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    rgb(var(--peacock)) 0%,
+    rgb(var(--peacock)) var(--pct, 0%),
+    rgb(var(--mist-deep)) var(--pct, 0%),
+    rgb(var(--mist-deep)) 100%
+  );
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: rgb(var(--surface));
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 2px 6px rgba(16, 48, 47, 0.18);
+  cursor: pointer;
+}
+input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: rgb(var(--surface));
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 2px 6px rgba(16, 48, 47, 0.18);
+  cursor: pointer;
+}
+input[type='range']:focus-visible {
+  outline: 2px solid rgb(var(--peacock));
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+/* Rendered markdown in the evaluator documents viewer */
+.doc {
+  color: rgb(var(--ink));
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 76ch;
+}
+.doc > *:first-child {
+  margin-top: 0;
+}
+.doc h1 {
+  font-size: 2.25rem;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+  margin: 0 0 1.25rem;
+}
+.doc h2 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 620;
+  margin: 2.75rem 0 0.9rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+.doc h3 {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  margin: 2rem 0 0.6rem;
+}
+.doc h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+.doc p,
+.doc ul,
+.doc ol,
+.doc blockquote,
+.doc pre,
+.doc table {
+  margin: 0 0 1rem;
+}
+.doc ul,
+.doc ol {
+  padding-left: 1.4rem;
+}
+.doc ul {
+  list-style: disc;
+}
+.doc ol {
+  list-style: decimal;
+}
+.doc li {
+  margin: 0.3rem 0;
+}
+.doc li::marker {
+  color: rgb(var(--ink-3));
+}
+.doc a {
+  color: rgb(var(--peacock-deep));
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--peacock) / 0.35);
+  text-underline-offset: 3px;
+}
+.doc a:hover {
+  text-decoration-color: rgb(var(--peacock));
+}
+.doc strong {
+  font-weight: 620;
+}
+.doc blockquote {
+  border-left: 3px solid rgb(var(--sandalwood));
+  background: rgb(var(--sandalwood-soft) / 0.6);
+  border-radius: 0 14px 14px 0;
+  padding: 0.85rem 1.1rem;
+  color: rgb(var(--ink-2));
+}
+.doc blockquote p:last-child {
+  margin-bottom: 0;
+}
+.doc code {
+  font-variant-numeric: tabular-nums;
+  background: rgb(var(--peacock-soft) / 0.7);
+  color: rgb(var(--ink));
+  border-radius: 6px;
+  padding: 0.08em 0.38em;
+  font-size: 0.92em;
+  font-weight: 500;
+}
+.doc pre {
+  background: rgb(var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  white-space: pre;
+}
+.doc pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 450;
+  font-size: inherit;
+}
+.doc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  display: block;
+  overflow-x: auto;
+}
+.doc thead th {
+  text-align: left;
+  font-weight: 600;
+  color: rgb(var(--ink-2));
+  background: rgb(var(--surface-2));
+  border-bottom: 1px solid var(--line-strong);
+  padding: 0.6rem 0.8rem;
+  white-space: nowrap;
+}
+.doc td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.6rem 0.8rem;
+  vertical-align: top;
+}
+.doc img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgb(var(--surface));
+}
+.doc hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2rem 0;
+}
+.doc hr + h2 {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.doc td:first-child {
+  min-width: 10rem;
+}
+.doc a.doc-figure {
+  display: block;
+  text-decoration: none;
+}
