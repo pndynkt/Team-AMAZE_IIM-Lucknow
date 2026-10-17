@@ -455,17 +455,20 @@ class TwinService:
         phys = self.c.physiology_for(pid)
         headline = {"urgent": "Strain episode likely in the next 72 hours", "watch": "Early signs of strain, worth a check-in",
                     "low": "Steady, no strain expected in the next 72 hours"}.get(tier, "Twin summary")
+        def _pct(x: float) -> str:  # small baselines keep one decimal: "0.7%", not "1%"
+            return f"{x * 100:.1f}%" if x < 0.01 else f"{x * 100:.0f}%"
+
         if usual and usual > 0:
             mult = p / usual
             if mult >= 1.8:
-                rel = f"about {mult:.0f} times {poss} usual {usual * 100:.0f}%" if mult >= 2.5 else f"nearly double {poss} usual {usual * 100:.0f}%"
+                rel = f"about {mult:.0f} times {poss} usual {_pct(usual)}" if mult >= 2.5 else f"nearly double {poss} usual {_pct(usual)}"
             elif mult >= 1.2:
-                rel = f"a little above {poss} usual {usual * 100:.0f}%"
+                rel = f"a little above {poss} usual {_pct(usual)}"
             else:
-                rel = f"close to {poss} usual {usual * 100:.0f}%"
+                rel = f"close to {poss} usual {_pct(usual)}"
         else:
             rel = "with no usual level yet"
-        s1 = f"{first}'s twin puts the chance of a strain episode in the next 72 hours at {p * 100:.0f}%, {rel}."
+        s1 = f"{first}'s twin puts the chance of a strain episode in the next 72 hours at {_pct(p)}, {rel}."
         labels = [c["label"] for c in ex["contributors"][:2]]
         def lower_first(t: str) -> str:
             return t if len(t) > 1 and t[1].isupper() else t[:1].lower() + t[1:]

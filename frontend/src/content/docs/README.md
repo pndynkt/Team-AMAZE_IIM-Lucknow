@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pratibimb.vercel.app"><b>Open the live demo</b></a> &nbsp;|&nbsp;
+  <a href="https://pratibimb-pi.vercel.app"><b>Open the live demo</b></a> &nbsp;|&nbsp;
   <a href="docs/presentation.pdf">Presentation</a> &nbsp;|&nbsp;
   <a href="docs/ALGORITHM.md">Algorithm</a> &nbsp;|&nbsp;
   <a href="docs/architecture.pdf">Architecture</a> &nbsp;|&nbsp;
@@ -19,7 +19,7 @@
   <a href="#video">Video</a>
 </p>
 
-> **Live demo:** <https://pratibimb.vercel.app> replays real output from the trained model in the browser, with no install. To run the API and retrain the model yourself, see [Run it](#run-it).
+> **Live demo:** <https://pratibimb-pi.vercel.app> replays real output from the trained model in the browser, with no install. To run the API and retrain the model yourself, see [Run it](#run-it).
 >
 > Research proof of concept on synthetic data. Not a medical device. Not a substitute for emergency services. If you feel unwell, call 112.
 

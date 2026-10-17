@@ -122,9 +122,9 @@ Method: Platt scaling (logistic on logit of raw score) fit on pooled out-of-fold
 
 Passed: True. Run `make test`.
 
-- `no_future_values_in_features`: pass (2026-10-17T15:56:31)
-- `label_window_excludes_t`: pass (2026-10-17T15:56:31)
-- `patient_level_split`: pass (2026-10-17T15:56:31)
+- `no_future_values_in_features`: pass (2026-10-17T16:18:15)
+- `label_window_excludes_t`: pass (2026-10-17T16:18:15)
+- `patient_level_split`: pass (2026-10-17T16:18:15)
 
 ## Published anchors (for context, not comparison)
 

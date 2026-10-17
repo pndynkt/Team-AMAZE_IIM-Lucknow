@@ -115,7 +115,7 @@ function Probability({ prob, band, usual, sex }: { prob: number; band: [number, 
         {usual !== null && (
           <>
             {' '}
-            {her.charAt(0).toUpperCase() + her.slice(1)} usual is <span className="tnum font-medium text-ink">{fmtPct(usual)}</span>.
+            {her.charAt(0).toUpperCase() + her.slice(1)} usual is <span className="tnum font-medium text-ink">{fmtPct(usual, usual < 0.01 ? 1 : 0)}</span>.
           </>
         )}
       </p>
