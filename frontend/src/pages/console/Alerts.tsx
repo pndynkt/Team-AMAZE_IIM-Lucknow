@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '@/api/client'
 import { useApi } from '@/api/hooks'
-import type { Alert, AlertBudget, AlertKind, AlertStatus, Tier } from '@/api/types'
+import type { Alert, AlertBudget, AlertKind, AlertStatus, ModelCard, ModelMetrics, Tier } from '@/api/types'
 import { PageHeader } from '@/components/layout/ConsoleShell'
 import { TierChip } from '@/components/ui/TierChip'
 import { Button } from '@/components/ui/Button'
@@ -259,10 +259,10 @@ function WhyThisAlert({ a }: { a: Alert }) {
           <SkeletonText lines={3} />
         ) : (
           <dl className="grid grid-cols-2 gap-x-6 text-[13.5px] tnum">
-            <Kv k="Catches" v={fmtPct(m.metrics.fused.sensitivity ?? 0)} />
-            <Kv k="Median warning" v={`${m.metrics.fused.median_lead_hours ?? '--'} h ahead`} />
-            <Kv k="False alerts" v={`${m.metrics.fused.false_alerts_per_patient_day?.toFixed(3) ?? '--'} a day`} />
-            <Kv k="AUROC" v={m.metrics.fused.auroc?.toFixed(2) ?? '--'} />
+            <Kv k="Catches" v={fmtPct(splitMean(m, 'sensitivity') ?? 0)} />
+            <Kv k="Median warning" v={`${splitMean(m, 'median_lead_hours') ?? 'n/a'} h ahead`} />
+            <Kv k="False alerts" v={`${splitMean(m, 'false_alerts_per_patient_day')?.toFixed(3) ?? 'n/a'} a day`} />
+            <Kv k="AUROC" v={splitMean(m, 'auroc')?.toFixed(3) ?? 'n/a'} />
           </dl>
         )}
       </section>
@@ -285,6 +285,15 @@ function WhyThisAlert({ a }: { a: Alert }) {
       </Link>
     </div>
   )
+}
+
+/** Mean over the repeated patient splits when published, else the single-split value. */
+function splitMean(m: ModelCard, key: keyof ModelMetrics): number | undefined {
+  const rep = (m.metrics.repeated as Record<string, unknown> | undefined)?.fused as Record<string, { mean?: number }> | undefined
+  const mean = rep?.[key as string]?.mean
+  if (typeof mean === 'number') return mean
+  const v = m.metrics.fused[key]
+  return typeof v === 'number' ? v : undefined
 }
 
 function Kv({ k, v }: { k: string; v: string }) {

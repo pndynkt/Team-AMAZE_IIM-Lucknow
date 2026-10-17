@@ -23,7 +23,7 @@ def _tag_pdf(pdf: Path, title: str) -> None:
         return
     writer = PdfWriter(clone_from=PdfReader(pdf))
     writer.metadata = None
-    writer.add_metadata({"/Title": title, "/Author": "Team Pratibimb", "/Creator": "Pratibimb", "/Producer": "Pratibimb"})
+    writer.add_metadata({"/Title": title, "/Author": "Team AMAZE", "/Creator": "Pratibimb", "/Producer": "Pratibimb"})
     with open(pdf, "wb") as fh:
         writer.write(fh)
 

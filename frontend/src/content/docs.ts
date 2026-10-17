@@ -50,6 +50,7 @@ export function docBySlug(slug: string | undefined): DocEntry | undefined {
 
 /** Files in the repository that ship as public downloads (public/docs). */
 export const DOWNLOADS = [
+  { path: 'docs/presentation.pdf', label: 'Presentation', note: 'PDF' },
   { path: 'docs/algorithm.pdf', label: 'Algorithm, step by step', note: 'PDF' },
   { path: 'docs/architecture.pdf', label: 'Architecture diagram', note: 'PDF' },
   { path: 'docs/architecture.png', label: 'Architecture diagram', note: 'PNG' },

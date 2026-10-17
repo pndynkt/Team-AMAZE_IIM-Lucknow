@@ -291,7 +291,7 @@ def train_fusion(frame: pd.DataFrame, episodes: pd.DataFrame, seed: int = 42,
         for key in keys:
             vals = [r[key] for r in rr if r.get(key) is not None]
             if vals:
-                repeated[name][key] = {"mean": round(float(np.mean(vals)), 3), "min": round(float(np.min(vals)), 3),
+                repeated[name][key] = {"mean": round(float(np.mean(vals)), 4), "min": round(float(np.min(vals)), 3),
                                        "max": round(float(np.max(vals)), 3)}
     wins = sum(a["auroc"] > b["auroc"] for a, b in zip(runs["fused"], runs["fused_no_twin"]))
     repeated["twin_beats_no_twin_auroc"] = f"{wins} of {len(runs['fused'])}"

@@ -58,13 +58,13 @@ class AlertService:
             sp = self.c.scored(pid)
             last = sp.feat.iloc[-1]
             if cur["tier"] == "urgent":
-                self.create(pid, "urgent", "model", f"Strain episode risk {int(cur['probability_72h'] * 100)}% in next 72 h",
+                self.create(pid, "urgent", "model", f"Strain episode risk {round(cur['probability_72h'] * 100)}% in next 72 h",
                             self._reason(pid), sp.confidence)
                 n += 1
             elif cur["tier"] == "watch" and (int(last["ns_state"]) >= 2 or int(last["score"]) >= self.c.thresholds.watch):
                 kind = "rule" if int(last["ns_state"]) >= 2 and int(last["score"]) < self.c.thresholds.watch else "model"
                 title = ("Overnight heart rate above personal baseline" if kind == "rule"
-                         else f"Strain episode risk {int(cur['probability_72h'] * 100)}% in next 72 h")
+                         else f"Strain episode risk {round(cur['probability_72h'] * 100)}% in next 72 h")
                 self.create(pid, "watch", kind, title, self._reason(pid), sp.confidence)
                 n += 1
         return n

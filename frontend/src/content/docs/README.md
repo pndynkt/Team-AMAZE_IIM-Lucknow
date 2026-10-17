@@ -12,18 +12,39 @@
 
 <p align="center">
   <a href="https://pratibimb-pi.vercel.app"><b>Open the live demo</b></a> &nbsp;|&nbsp;
+  <a href="#demo-video">Demo video</a> &nbsp;|&nbsp;
   <a href="docs/presentation.pdf">Presentation</a> &nbsp;|&nbsp;
-  <a href="docs/ALGORITHM.md">Algorithm</a> &nbsp;|&nbsp;
   <a href="docs/architecture.pdf">Architecture</a> &nbsp;|&nbsp;
-  <a href="docs/MODEL_CARD.md">Model card</a> &nbsp;|&nbsp;
-  <a href="#video">Video</a>
+  <a href="docs/ALGORITHM.md">Algorithm</a> &nbsp;|&nbsp;
+  <a href="docs/MODEL_CARD.md">Model card</a>
 </p>
 
-> **Live demo:** <https://pratibimb-pi.vercel.app> replays real output from the trained model in the browser, with no install. To run the API and retrain the model yourself, see [Run it](#run-it).
+> **Team AMAZE, IIM Lucknow.** Happiest Health Digital Twin Challenge 2026.
+>
+> **Live demo:** <https://pratibimb-pi.vercel.app> replays real output from the trained model in the browser, with no install and no sign-in. To run the API and retrain the model yourself, see [Run it](#run-it).
 >
 > Research proof of concept on synthetic data. Not a medical device. Not a substitute for emergency services. If you feel unwell, call 112.
 
 ---
+
+## Submission checklist
+
+Every item the submission form asks for, and where it is in this README.
+
+| # | Required item | Where to find it |
+|---|---|---|
+| 1 | Team details | [Team details](#team-details) |
+| 2 | College / incubator information | [College and incubator information](#college-and-incubator-information) |
+| 3 | Project title | [Project title](#project-title) |
+| 4 | Problem statement | [Problem statement](#problem-statement) |
+| 5 | Healthcare use case | [Healthcare use case](#healthcare-use-case) |
+| 6 | Technical stack | [Technical stack](#technical-stack) |
+| 7 | AI/ML model or framework details | [AI/ML model and framework details](#aiml-model-and-framework-details) |
+| 8 | Demo video (unlisted YouTube, link in this README) | [Demo video](#demo-video) |
+| 9 | Open-source license details | [Open-source license details](#open-source-license-details) |
+| 10 | Architecture diagram in PDF/PPT | [Architecture diagram](#architecture-diagram): [`docs/architecture.pdf`](docs/architecture.pdf) |
+| 11 | Presentation in PDF/PPT with project details and outcomes | [Presentation](#presentation): [`docs/presentation.pdf`](docs/presentation.pdf), [`docs/presentation.pptx`](docs/presentation.pptx) |
+| 12 | All files and links publicly accessible | [Public access](#public-access-to-all-files-and-links) |
 
 ## At a glance
 
@@ -31,7 +52,7 @@
 |---|---|
 | **Condition** | Hypertension with cardiovascular risk (about 1 in 4 Indian adults) |
 | **Event predicted** | Cardiovascular strain episode, onset within the next **72 hours** |
-| **Streams fused** | Static EHR (FHIR R4) + daily wearable stream (heart rate, HRV, sleep, steps, SpO2, home BP) |
+| **Streams fused** | Static EHR (FHIR R4: demographics, past diagnoses, lab results, medicines, genetic marker as a polygenic risk tier) + daily wearable stream (heart rate, HRV, sleep with deep and REM stages, step count, SpO2, home BP cuff) |
 | **Core algorithm** | Personal Physiology Engine (empirical Bayes) feeding a calibrated LightGBM fusion model |
 | **Accuracy** | AUROC **0.876**, catches **70%** of episodes at 1 false alert per 22 patient-days, median lead **48 h** |
 | **Twin lift** | Twin adjustment adds **+0.025 AUROC** and **+7 points** of sensitivity (3 of 3 patient splits) |
@@ -45,9 +66,9 @@ Every requirement in the brief, where to see it, and the proof.
 
 | The brief asks for | Where to see it (live demo) | Proof in the repo |
 |---|---|---|
-| **One condition prevalent in India** | Landing page; twin page header | [Problem statement](#problem-statement-and-healthcare-use-case) |
+| **One condition prevalent in India** | Landing page; twin page header | [Problem statement](#problem-statement) |
 | **Static EHR data** | Twin page, Records tab (conditions, labs, medicines, family history, genetic tier) | `backend/twin/data/ehr.py`, FHIR bundles in `data/synthetic/fhir/` |
-| **Dynamic wearable stream** | Twin page, Twin tab (three linked charts, live stream ticking) | `backend/twin/data/wearables.py`, `docs/DEVICE_SYNC.md` |
+| **Dynamic wearable stream** | Twin page, Twin tab (three linked charts, live stream ticking): heart rate, HRV, sleep stages, steps, SpO2, home BP. CGM is not needed for hypertension; diabetes is read from the record (HbA1c) | `backend/twin/data/wearables.py`, `docs/DEVICE_SYNC.md` |
 | **Fusion of the two** | "Why this score" splits each reason into record and watch | `backend/twin/models/fusion.py`, ablation table below |
 | **Virtual replica of the patient** | Twin page, "How Meera's body responds" (her own learned slopes) | `backend/twin/models/physiology.py`, recovery test below |
 | **The algorithm, explained** | Evaluator guide, "How the algorithm works" | [`docs/ALGORITHM.md`](docs/ALGORITHM.md), worked on one patient with real numbers |
@@ -59,30 +80,37 @@ Every requirement in the brief, where to see it, and the proof.
 
 Suggested path: **Evaluator guide** then **Today** (triage) then **Meera Iyer** (P-0007) then the **Twin** and **Simulate** tabs then **Alerts** then the **Patient view** (hold SOS) then **Model**.
 
-## Team details and college
+## Team details
 
 | | |
 |---|---|
-| **Team** | Team Pratibimb |
-| **College** | Indian Institute of Management Lucknow |
+| **Team name** | AMAZE |
 | **Team leader** | Nikita Pandey |
-| **Members** | _add names and programmes here_ |
-| **Submission folder** | `Team Pratibimb_IIM Lucknow` |
+| **Members** | Nikita Pandey (team leader), Suraj Aryan |
+| **Programme** | Post Graduate Programme in Sustainable Management (PGPSM) |
+| **Submission folder** | `Team-AMAZE_IIM-Lucknow` (this repository) |
+
+## College and incubator information
+
+| | |
+|---|---|
+| **College** | Indian Institute of Management Lucknow (IIM Lucknow) |
+| **Campus** | Noida |
+| **Programme** | PGP in Sustainable Management (PGPSM) |
+| **Incubator** | None; built as a student team project |
 
 ## Project title
 
 **Pratibimb (प्रतिबिम्ब, "reflection"): an early-warning digital twin for hypertension on the watches India already owns.**
 
-## Problem statement and healthcare use case
-
-**The problem**
+## Problem statement
 
 - **Hypertension is common and quiet.** About 1 in 4 Indian adults has high blood pressure; most strain builds for days before a surge, clinic visit or ER trip.
 - **Watches see it, nobody reads it.** 91.6% of smartwatches sold in India cost under US$50 (IDC, Q2 2026). They record heart rate, sleep and steps every night, but no one turns that into a warning a doctor can act on.
 - **Fixed thresholds drown doctors.** One remote-monitoring study flagged 55.8% of readings. Doctors stop looking.
 - **Every person is different.** A short night raises one person's heart rate by 2 bpm and another's by 0.3 bpm. A population rule cannot tell a bad week from a real warning.
 
-**The use case**
+## Healthcare use case
 
 - **Event.** A *cardiovascular strain episode*: overnight resting heart rate rising above the person's own 28 day baseline, HRV falling below their smallest worthwhile change, falling steps and sleep, and a rising 7 day home systolic trend, ending in an event day (hypertensive surge, unplanned clinic or ER visit).
 - **Prediction.** Probability of onset in the **next 72 hours**, scored every night from whatever the watch has synced.
@@ -90,7 +118,23 @@ Suggested path: **Evaluator guide** then **Today** (triage) then **Meera Iyer** 
 - **Patient.** Sees one sentence in English or Hindi, the one habit that helps them most, and a check-in button. If something feels wrong, press-and-hold SOS starts a consented ladder: the patient first, then two contacts, then the doctor, with one-tap 112 at every step.
 - **Why not "heart attack detection".** No consumer wearable has validated heart-attack detection and apps cannot auto-dial 112. The model owns the days-ahead amber tier; people and the phone own the red tier.
 
-## How the algorithm works
+## Technical stack
+
+| Layer | Choice |
+|---|---|
+| **Data generation** | Python, NumPy, pandas; Synthea-shaped FHIR R4 EHR; daily wearable stream with planted personal response slopes, lifestyle phases, labelled episodes and unlabelled confounders; seeded (`python -m twin.data.generate`) |
+| **Personal Physiology Engine** | Per-person lagged regressions with AR(1)-inflated errors; DerSimonian and Laird empirical Bayes pooling; expanding-window slopes so no future day leaks in |
+| **Prediction model** | LightGBM binary classifier; Platt calibration; five fold models as the uncertainty band; SHAP TreeExplainer; NightSignal-style rule alongside |
+| **Forecasts** | 18 LightGBM quantile models (resting HR and systolic BP, days 1 to 3, P10, P50, P90) |
+| **Static risk** | Framingham 2008 10 year CVD risk, polygenic risk tier |
+| **API** | FastAPI, Pydantic v2, SQLite (alerts, escalations, consent, annotations, thresholds, append-only audit), Server-Sent Events for the live stream |
+| **Front end** | React 18, TypeScript, Vite, Tailwind CSS, Recharts, framer-motion; Figtree and Mukta (Devanagari), self-hosted; hand-built animated SVG brand and health glyphs |
+| **Standards** | FHIR R4, ABDM WellnessRecord bundle (NRCeS profiles), SNOMED CT, LOINC |
+| **Quality** | pytest (25 tests incl. three leakage tests), Docker Compose, Makefile |
+
+## AI/ML model and framework details
+
+**How the algorithm works**
 
 **In one line:** the twin learns how each person's body reacts to sleep and walking, removes that from tonight's readings, and alerts only on the change their own habits cannot explain.
 
@@ -111,7 +155,7 @@ Suggested path: **Evaluator guide** then **Today** (triage) then **Meera Iyer** 
 
 Full explanation with formulas, pseudo-code and limits: [`docs/ALGORITHM.md`](docs/ALGORITHM.md).
 
-## Results
+**Results**
 
 Synthetic cohort, 240 patients, 28,685 patient-days, 342 episodes. Patient-level 5-fold cross-validation, **repeated on three different patient splits**; every number is the mean of the three, measured on patients the model never saw.
 
@@ -173,38 +217,47 @@ Full numbers, calibration, features and limits: [`docs/MODEL_CARD.md`](docs/MODE
 More in [`docs/screenshots/`](docs/screenshots/): landing page, records, alert explanation, thresholds replay, audit log, evaluator guide.
 
 
-## Technical stack, AI/ML model and framework details
+## Demo video
 
-| Layer | Choice |
-|---|---|
-| **Data generation** | Python, NumPy, pandas; Synthea-shaped FHIR R4 EHR; daily wearable stream with planted personal response slopes, lifestyle phases, labelled episodes and unlabelled confounders; seeded (`python -m twin.data.generate`) |
-| **Personal Physiology Engine** | Per-person lagged regressions with AR(1)-inflated errors; DerSimonian and Laird empirical Bayes pooling; expanding-window slopes so no future day leaks in |
-| **Prediction model** | LightGBM binary classifier; Platt calibration; five fold models as the uncertainty band; SHAP TreeExplainer; NightSignal-style rule alongside |
-| **Forecasts** | 18 LightGBM quantile models (resting HR and systolic BP, days 1 to 3, P10, P50, P90) |
-| **Static risk** | Framingham 2008 10 year CVD risk, polygenic risk tier |
-| **API** | FastAPI, Pydantic v2, SQLite (alerts, escalations, consent, annotations, thresholds, append-only audit), Server-Sent Events for the live stream |
-| **Front end** | React 18, TypeScript, Vite, Tailwind CSS, Recharts, framer-motion; Figtree and Mukta (Devanagari), self-hosted; hand-built animated SVG brand and health glyphs |
-| **Standards** | FHIR R4, ABDM WellnessRecord bundle (NRCeS profiles), SNOMED CT, LOINC |
-| **Quality** | pytest (25 tests incl. three leakage tests), Docker Compose, Makefile |
-
-## Video
-
-- **Walk-through (20+ minutes):** _add the unlisted YouTube link here_
+- **Watch:** _unlisted YouTube link: paste here_ (20 minutes)
+- **What it covers:** problem, data, architecture, the twin algorithm, results, doctor dashboard, patient view and check-in ladder, compliance and limits.
 - **Script with timings:** [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md)
 
-## Open-source licence
+## Open-source license details
 
-MIT. See [`LICENSE`](LICENSE). Third-party packages keep their own licences (LightGBM, scikit-learn, SHAP, FastAPI, React, Recharts, Tailwind, framer-motion, Figtree and Mukta under the SIL Open Font Licence).
+- **License:** MIT. Full text in [`LICENSE`](LICENSE). Anyone may use, copy, modify and share the code with the copyright notice kept.
+- **Third-party code:** each package keeps its own license: LightGBM (MIT), scikit-learn (BSD-3), SHAP (MIT), pandas (BSD-3), FastAPI (MIT), React (MIT), Recharts (MIT), Tailwind CSS (MIT), framer-motion (MIT), lucide (ISC), marked (MIT).
+- **Fonts:** Figtree and Mukta under the SIL Open Font License, self-hosted.
+- **Data:** all data is synthetic and generated by this repository; no third-party patient data is included.
 
 ## Architecture diagram
 
 <p align="center"><img src="docs/architecture.png" alt="Pratibimb architecture" width="880"></p>
 
-PDF: [`docs/architecture.pdf`](docs/architecture.pdf) (also `.svg`, `.png`).
+- **PDF:** [`docs/architecture.pdf`](docs/architecture.pdf)
+- **Also:** [`docs/architecture.png`](docs/architecture.png), [`docs/architecture.svg`](docs/architecture.svg)
+- **Algorithm, step by step:** [`docs/algorithm.pdf`](docs/algorithm.pdf)
 
 ## Presentation
 
-- **Deck:** [`docs/presentation.pdf`](docs/presentation.pdf) _(add before submission)_
+- **PDF:** [`docs/presentation.pdf`](docs/presentation.pdf) (18 slides)
+- **PowerPoint:** [`docs/presentation.pptx`](docs/presentation.pptx), with speaker notes for the demo video
+- **Covers:** problem and use case; data fusion and architecture; the five steps of the twin worked on one patient; prediction pipeline and validation; results and twin recovery; doctor console and patient view; India fit and compliance; outcomes; limits and roadmap; team and links.
+
+## Public access to all files and links
+
+Everything an evaluator needs opens without a sign-in or extra permission.
+
+| What | Link | Access |
+|---|---|---|
+| **Repository** | <https://github.com/pndynkt/Team-AMAZE_IIM-Lucknow> | Public |
+| **Live demo** | <https://pratibimb-pi.vercel.app> | Public, no sign-in |
+| **Presentation** | [`docs/presentation.pdf`](docs/presentation.pdf) | In this repository |
+| **Architecture diagram** | [`docs/architecture.pdf`](docs/architecture.pdf) | In this repository |
+| **Algorithm guide** | [`docs/ALGORITHM.md`](docs/ALGORITHM.md) | In this repository |
+| **Model card** | [`docs/MODEL_CARD.md`](docs/MODEL_CARD.md) | In this repository |
+| **Demo video** | [Demo video](#demo-video) | Unlisted YouTube: anyone with the link can watch |
+| **Data, model and code** | `backend/`, `frontend/` | In this repository; runs offline |
 
 ## Run it
 
@@ -265,12 +318,3 @@ docs/              algorithm, model card, API, design, device sync, compliance, 
 scripts/           model card and diagram renderers, hosted-demo snapshot export
 vercel.json        online demo build settings
 ```
-
-## Submission checklist
-
-- [x] Public GitHub repository, folder `Team Pratibimb_IIM Lucknow`
-- [x] README with team details, title, problem statement and use case, stack and model details
-- [ ] Video of at least 20 minutes: _add link_
-- [x] Open-source licence (MIT)
-- [x] Architecture diagram (`docs/architecture.pdf`)
-- [ ] Presentation PDF or PPT: _add `docs/presentation.pdf`_

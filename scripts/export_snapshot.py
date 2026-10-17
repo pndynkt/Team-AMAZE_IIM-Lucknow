@@ -63,6 +63,20 @@ def record(pid: str, as_of: str) -> dict:
     return d
 
 
+def nightly_time(doc: dict, as_of: str) -> None:
+    """Date alerts and their audit entries to the nightly scoring run on the cohort's date.
+
+    The API stamps them when it starts; the hosted demo is frozen on `as_of`, so the replay
+    shows them at 06:00 that morning instead of the day the snapshot was taken.
+    """
+    stamp = f"{as_of}T06:00:00+05:30"
+    for a in doc["alerts"].get("alerts", []):
+        a["created_at"] = stamp
+    for e in doc["audit"].get("entries", []):
+        if e.get("action") == "alert.created":
+            e["at"] = stamp
+
+
 def main() -> None:
     for folder in (OUT, PATIENTS, EXPORTS):
         folder.mkdir(parents=True, exist_ok=True)
@@ -77,6 +91,7 @@ def main() -> None:
     doc["model"] = get("/api/model")
     doc["escalations"] = get("/api/escalations")
     as_of = doc["meta"].get("as_of")
+    nightly_time(doc, as_of)
 
     rows = doc["patients"]["patients"]
     ranked = sorted(rows, key=lambda r: -(r.get("risk_score") or 0))
