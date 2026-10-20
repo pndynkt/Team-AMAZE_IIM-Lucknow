@@ -219,7 +219,7 @@ More in [`docs/screenshots/`](docs/screenshots/): landing page, records, alert e
 
 ## Demo video
 
-- **Watch:** _unlisted YouTube link: paste here_ (20 minutes)
+- **Watch:** [https://youtu.be/Yr3QpI2d3IE](https://youtu.be/Yr3QpI2d3IE) (unlisted YouTube)
 - **What it covers:** problem, data, architecture, the twin algorithm, results, doctor dashboard, patient view and check-in ladder, compliance and limits.
 
 ## Open-source license details
